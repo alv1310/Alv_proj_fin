@@ -6,9 +6,16 @@ function ArticleList() {
     <>
       <div class="container">
         <div class="row">
-          <div className="articlePageTitle mt-3 ml-3">風格誌</div>
-
-          <ul class="nav ml-auto articleCategoryBar mt-2">
+          <div className="articleTitleGroup mt-3">
+            <span className="articleLogo ">
+              <img
+                src="./images/article/campfun-logo.png"
+                alt="campfun-logo"
+              ></img>
+            </span>
+            <span className="articlePageTitle ml-2">風格誌</span>
+          </div>
+          <ul class="nav ml-auto articleCategoryBar mt-3">
             <li class="nav-item">
               <a class="nav-link" href="#/">
                 露營新手指南
@@ -127,9 +134,18 @@ function ArticleList() {
         </div>
       </div>
 
-      <div class="container articleTag ">
+      <div class="container articleTag">
         <div className="row d-flex my-5">
-          <div className="articleTagTitle mt-3 ml-3">熱門主題</div>
+          <div className="articleTitleGroup mt-3">
+            <span className="articleLogo ">
+              <img
+                src="./images/article/campfun-logo.png"
+                alt="campfun-logo"
+              ></img>
+            </span>
+            <span className="articlePageTitle ml-2">熱門主題</span>
+          </div>
+
           <div className="articleTagGroup mt-2 ml-5 d-flex">
             <a class="nav-link" href="#">
               ＃花蓮
@@ -163,7 +179,17 @@ function ArticleList() {
 
       <div class="container articleCategoryAll">
         <div class="row d-flex">
-          <div className="articlePageTitle mt-3 ml-3">露營新手指南</div>
+          <div className="articleTitleGroup mt-3">
+            <span>
+              <img
+                className="articleLogo-2"
+                src="./images/article/campfun-logo.png"
+                alt="campfun-logo"
+              ></img>
+            </span>
+            <span className="articlePageTitle ml-2">露營新手指南</span>
+          </div>
+          {/* <div className="articlePageTitle mt-3 ml-3">露營新手指南</div> */}
           <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
             {/* <Link to="/about">About</Link> */}
             <a href="#/">看更多內容</a>
@@ -267,7 +293,17 @@ function ArticleList() {
 
       <div class="container articleCategoryAll">
         <div class="row d-flex">
-          <div className="articlePageTitle mt-3 ml-3">親子同遊露營</div>
+          <div className="articleTitleGroup mt-3">
+            <span>
+              <img
+                className="articleLogo-2"
+                src="./images/article/campfun-logo.png"
+                alt="campfun-logo"
+              ></img>
+            </span>
+            <span className="articlePageTitle ml-2">親子同遊露營</span>
+          </div>
+          {/* <div className="articlePageTitle mt-3 ml-3">親子同遊露營</div> */}
           <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
             {/* <Link to="/about">About</Link> */}
             <a href="#/">看更多內容</a>
@@ -375,7 +411,17 @@ function ArticleList() {
 
       <div class="container articleCategoryAll">
         <div class="row d-flex">
-          <div className="articlePageTitle mt-3 ml-3">深度野營探索</div>
+          <div className="articleTitleGroup mt-3">
+            <span>
+              <img
+                className="articleLogo-2"
+                src="./images/article/campfun-logo.png"
+                alt="campfun-logo"
+              ></img>
+            </span>
+            <span className="articlePageTitle ml-2">深度野營探索</span>
+          </div>
+
           <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
             {/* <Link to="/about">About</Link> */}
             <a href="#/">看更多內容</a>
@@ -481,7 +527,17 @@ function ArticleList() {
 
       <div class="container articleCategoryAll">
         <div class="row d-flex">
-          <div className="articlePageTitle mt-3 ml-3">奢華露營體驗</div>
+          <div className="articleTitleGroup mt-3">
+            <span>
+              <img
+                className="articleLogo-2"
+                src="./images/article/campfun-logo.png"
+                alt="campfun-logo"
+              ></img>
+            </span>
+            <span className="articlePageTitle ml-2">奢華露營體驗</span>
+          </div>
+
           <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
             {/* <Link to="/about">About</Link> */}
             <a href="#/">看更多內容</a>

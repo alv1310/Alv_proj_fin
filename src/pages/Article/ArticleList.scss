@@ -1,6 +1,17 @@
 // 導入bootstrap所有的樣式與預設變數
 @import '~bootstrap/scss/bootstrap.scss';
 
+.articleLogo {
+  width: 130px;
+  img {
+    width: 17%;
+  }
+}
+
+.articleLogo-2 {
+  width: 14%;
+}
+
 .articlePageTitle,
 .articleTagTitle,
 .articlePageTitle {
