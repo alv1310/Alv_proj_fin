@@ -15,7 +15,7 @@
 .articlePageTitle,
 .articleTagTitle,
 .articlePageTitle {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 20px;
 }
 
@@ -23,12 +23,13 @@
   height: 50px;
   a.nav-link {
     color: #5e994a;
-    font-weight: 500;
+    font-weight: 600;
   }
   a.nav-link:hover {
     color: #145041;
     border-bottom: 3px solid #145041;
     padding-bottom: 3px;
+    font-weight: 600;
   }
 }
 
@@ -53,12 +54,14 @@
   border: transparent;
   border-radius: 1px;
   .card-body {
-    width: 75%;
-    // background: url(../../../public/images/article/article_28.jpg);
-    // background-size: cover;
+    width: 75%;    
     .card-title {
       border-left: 7px solid #5e994a;
       padding-left: 10px;
+      font-weight: 600;
+    }
+    .articleDate {
+      color: rgb(177, 177, 177);
     }
     .articleAuthor {
       color: #5e994a;
@@ -70,7 +73,7 @@
       }
       a:hover {
         color: #145041;
-        text-decoration: none;
+        text-decoration: none;        
       }
     }
   }
@@ -138,6 +141,7 @@
       height: 90%;
       h5 {
         color: #fff;
+        font-weight: 600;
       }
       p {
         display: none;
@@ -151,9 +155,11 @@
 .articleLatestCard:hover .articleLatestMiddleImg,
 .articleLatestCard:hover .articleLatestRightImg {
   opacity: 0.5;
+  
 }
 // 卡片hover字體出現
 .articleLatestCard:hover {
+  cursor: pointer;
   .card-body {
     h5,
     p {
@@ -202,6 +208,10 @@
     width: 500px;
     .articleCategoryTitle {
       color: #145041;
+      font-weight: 600;
+    }
+    .articleDate {
+      color: rgb(134, 134, 134);
     }
     .articleAuthor {
       color: #5e994a;
@@ -251,6 +261,10 @@
       width: 260px;
       .articleCategoryTitle {
         color: #145041;
+        font-weight: 600;
+      }
+      .articleDate {
+        color: rgb(134, 134, 134);
       }
       .articleAuthor {
         color: #5e994a;
