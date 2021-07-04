@@ -2,6 +2,8 @@ import { data } from 'jquery'
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './ArticleList.scss'
+import moment from 'moment'
+import { BiRightArrowCircle } from 'react-icons/bi'
 
 function ArticleList(props) {
   // console.log(props)
@@ -155,7 +157,9 @@ function ArticleList(props) {
           <div className="card articleMainCard">
             <div className="card-body mx-auto">
               <h5 className="card-title my-3">{topArticle.aTitle}</h5>
-              <span className="articleDate">{topArticle.aDate}</span>
+              <span className="articleDate">
+                {moment(topArticle.aDate).format('YYYY-MM-DD')}
+              </span>
               &nbsp;&nbsp;&nbsp;
               <span className="articleAuthor">作者：{topArticle.author}</span>
               <div className="card-text mt-4">
@@ -177,10 +181,10 @@ function ArticleList(props) {
           {latest.length &&
             latest.map((value, index) => {
               return (
+
                 <Link key={value.id} className="col-sm-4 ">
                   <div className="articleLatestCard mx-auto mt-3">
                     <img
-                      // src="../images/article/{value.aImg}"
                       src={`../images/article/${value.aImg}`}
                       alt="article_03"
                       className="articleLatestLeftImg"
@@ -194,6 +198,7 @@ function ArticleList(props) {
                     </div>
                   </div>
                 </Link>
+                
               )
             })}
         </div>
@@ -210,7 +215,7 @@ function ArticleList(props) {
                 alt="campfun-logo"
               ></img>
             </span>
-            <span className="articlePageTitle ml-2">熱門主題</span>
+            <span className="articlePageTitle ml-2 mr-3">熱門主題</span>
           </div>
 
           {tagName.length &&
@@ -231,19 +236,18 @@ function ArticleList(props) {
       <div className="container articleCategoryAll">
         <div className="row d-flex">
           <div className="articleTitleGroup mt-3">
-            <span>
+            <span className="articleLogo">
               <img
-                className="articleLogo-2"
                 src="../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
             </span>
             <span className="articlePageTitle ml-2">露營新手指南</span>
           </div>
-          {/* <div className="articlePageTitle mt-3 ml-3">露營新手指南</div> */}
-          <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
-            {/* <Link to="/about">About</Link> */}
-            <Link to="#/">看更多內容</Link>
+          <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
+            <Link to="#/">
+              看更多內容 <BiRightArrowCircle size="25px" />
+            </Link>
           </div>
         </div>
 
@@ -352,19 +356,18 @@ function ArticleList(props) {
       <div className="container articleCategoryAll">
         <div className="row d-flex">
           <div className="articleTitleGroup mt-3">
-            <span>
+            <span className="articleLogo">
               <img
-                className="articleLogo-2"
                 src="../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
             </span>
             <span className="articlePageTitle ml-2">親子同遊露營</span>
           </div>
-          {/* <div className="articlePageTitle mt-3 ml-3">親子同遊露營</div> */}
-          <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
-            {/* <Link to="/about">About</Link> */}
-            <Link to="#/">看更多內容</Link>
+          <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
+            <Link to="#/">
+              看更多內容 <BiRightArrowCircle size="25px" />
+            </Link>
           </div>
         </div>
 
@@ -475,9 +478,8 @@ function ArticleList(props) {
       <div className="container articleCategoryAll">
         <div className="row d-flex">
           <div className="articleTitleGroup mt-3">
-            <span>
+            <span className="articleLogo">
               <img
-                className="articleLogo-2"
                 src="../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
@@ -485,9 +487,10 @@ function ArticleList(props) {
             <span className="articlePageTitle ml-2">深度野營探索</span>
           </div>
 
-          <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
-            {/* <Link to="/about">About</Link> */}
-            <Link to="#/">看更多內容</Link>
+          <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
+            <Link to="#/">
+              看更多內容 <BiRightArrowCircle size="25px" />
+            </Link>
           </div>
         </div>
 
@@ -596,9 +599,8 @@ function ArticleList(props) {
       <div className="container articleCategoryAll">
         <div className="row d-flex">
           <div className="articleTitleGroup mt-3">
-            <span>
+            <span className="articleLogo">
               <img
-                className="articleLogo-2"
                 src="../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
@@ -606,9 +608,10 @@ function ArticleList(props) {
             <span className="articlePageTitle ml-2">奢華露營體驗</span>
           </div>
 
-          <div className="articleMoreLinkMain mt-4 ml-auto mr-5">
-            {/* <Link to="/about">About</Link> */}
-            <Link to="#/">看更多內容</Link>
+          <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
+            <Link to="#/">
+              看更多內容 <BiRightArrowCircle size="25px" />
+            </Link>
           </div>
         </div>
 

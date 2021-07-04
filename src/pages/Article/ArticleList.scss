@@ -4,12 +4,8 @@
 .articleLogo {
   width: 130px;
   img {
-    width: 17%;
+    width: 30px;
   }
-}
-
-.articleLogo-2 {
-  width: 14%;
 }
 
 .articlePageTitle,
@@ -285,6 +281,62 @@
       }
       .articleAuthor {
         color: #5e994a;
+      }
+    }
+  }
+}
+
+// ------ 分類頁部分
+
+.articleBreadCrumb {
+  // line-height: 1.5;
+}
+
+.articleBackToList {
+  a.nav-link {
+    color: #5e994a;
+    font-weight: 600;
+  }
+  a.nav-link:hover {
+    color: #145041;
+    font-weight: 600;
+  }
+}
+
+
+.articleCategoryFilter {
+  width: 340px;
+  height: 600px;
+  .articleCategoryFilterImg {
+    width: 360px;
+    height: 300px;
+    overflow: hidden;
+    img {
+      height: 100%
+      
+    }
+  }
+
+  .articleCategoryFilterText {
+    width: 320px;
+    .articleCategoryTitle {
+      color: #145041;
+      font-weight: 600;
+    }
+    .articleDate {
+      color: rgb(134, 134, 134);
+    }
+    .articleAuthor {
+      color: #5e994a;
+    }
+    p {
+      a {
+        color: #5e994a;
+        text-decoration: none;
+      }
+      a:hover {
+        color: #145041;
+        text-decoration: none;
       }
     }
   }
