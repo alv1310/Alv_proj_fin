@@ -54,7 +54,7 @@
   border: transparent;
   border-radius: 1px;
   .card-body {
-    width: 75%;    
+    width: 75%;
     .card-title {
       border-left: 7px solid #5e994a;
       padding-left: 10px;
@@ -73,7 +73,7 @@
       }
       a:hover {
         color: #145041;
-        text-decoration: none;        
+        text-decoration: none;
       }
     }
   }
@@ -123,16 +123,7 @@
       position: relative;
       left: -70%;
     }
-    .articleLatestMiddleImg {
-      height: 100%;
-      position: relative;
-      left: -25%;
-    }
-    .articleLatestRightImg {
-      height: 100%;
-      position: relative;
-      left: -90%;
-    }
+
     .card-body {
       position: absolute;
       left: 11%;
@@ -143,29 +134,45 @@
         color: #fff;
         font-weight: 600;
       }
-      p {
-        display: none;
-        color: #fff;
+      .card-text {
+        width: auto;
+        p {
+          display: none;
+          color: #fff;
+        }
       }
     }
   }
 }
 // 卡片hover背景圖轉透明
-.articleLatestCard:hover .articleLatestLeftImg,
-.articleLatestCard:hover .articleLatestMiddleImg,
-.articleLatestCard:hover .articleLatestRightImg {
+.articleLatestCard:hover .articleLatestLeftImg {
   opacity: 0.5;
-  
 }
 // 卡片hover字體出現
 .articleLatestCard:hover {
   cursor: pointer;
   .card-body {
-    h5,
-    p {
+    h5 {
       opacity: 1;
       display: block;
       transition: 0.5s;
+    }
+    .card-text {
+      width: auto;
+      p {
+        opacity: 1;
+        display: block;
+        transition: 0.5s;
+      }
+      .ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+      }
     }
   }
 }

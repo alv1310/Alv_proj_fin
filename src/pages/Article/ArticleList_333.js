@@ -2,33 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './ArticleList.scss'
 
+//function1
 function ArticleList(props) {
   // console.log(props)
   const [articles, setArticles] = useState([])
-  const [latest, setLatest] = useState([])
+  const [articlesLatest, setArticlesLatest] = useState([])
 
   async function getArticlesFromServer() {
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/'
+    // 開啟載入指示
+    // setDataLoading(true)
 
-    // 注意header資料格式要設定，伺服器才知道是json格式
-    const request = new Request(url, {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
-
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log('data', data)
-    // 設定資料
-    setArticles(data.data)
-  }
-
-  async function getLatestFromServer() {
-    // const
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/latest'
 
@@ -45,7 +28,27 @@ function ArticleList(props) {
     const data = await response.json()
     console.log('data', data)
     // 設定資料
-    setLatest(data.r)
+    setArticles(data.r)
+  }
+
+  async function getLatestFromServer() {
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:4000/articles/latest'
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('data', data)
+    // 設定資料
+    setArticlesLatest(data.r)
   }
 
   // 一開始就會開始載入資料
@@ -126,34 +129,20 @@ function ArticleList(props) {
         <div className="row">
           <div className="articleLatestTitle mt-3 ml-5">LATEST</div>
         </div>
-
-        <div className="row d-flex justify-content-around">
-          {latest.length &&
-            latest.map((value, index) => {
-              return (
-                <div key={value.id} className="col-sm-4 ">
-                  <div className="articleLatestCard mx-auto mt-3">
-                    <img
-                      // src="../images/article/{value.aImg}"
-                      src={`../images/article/${value.aImg}`}
-                      alt="article_03"
-                      className="articleLatestLeftImg"
-                    />
-
-                    <div className="card-body d-flex align-items-start flex-column">
-                      <h5 className="card-title mb-auto">{value.aTitle}</h5>
-                      <div className="card-text">
-                        <p className="ellipsis mb-2">{value.aContent}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-        </div>
+        
+        {articlesLatest.length &&
+          articlesLatest.map((value, index) => {
+            return (
+              <>
+                <ul key={value.aId}>
+                  <li>{value.author}</li>
+                  <li>{value.aDate}</li>
+                  <li>{value.aTitle} </li>
+                </ul>
+              </>
+            )
+          })}
       </div>
-
-      {/* ------------ 標籤部分 -------------- */}
 
       <div className="container articleTag">
         <div className="row d-flex my-5">
