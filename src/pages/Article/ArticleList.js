@@ -1,3 +1,4 @@
+import { data } from 'jquery'
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './ArticleList.scss'
@@ -6,6 +7,8 @@ function ArticleList(props) {
   // console.log(props)
   const [articles, setArticles] = useState([])
   const [latest, setLatest] = useState([])
+  const [tagName, setTagName] = useState([])
+  const [topArticle, setTopArticle] = useState([])
 
   async function getArticlesFromServer() {
     // 連接的伺服器資料網址
@@ -48,10 +51,54 @@ function ArticleList(props) {
     setLatest(data.r)
   }
 
+  async function getLatestTagName() {
+    // const
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:4000/articles/tag'
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('data', data)
+    // 設定資料
+    setTagName(data.r)
+  }
+
+  async function getTopArticle() {
+    // const
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:4000/articles/a/56'
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('data', data)
+    // 設定資料
+    setTopArticle(data)
+  }
+
   // 一開始就會開始載入資料
   useEffect(() => {
     getArticlesFromServer()
     getLatestFromServer()
+    getLatestTagName()
+    getTopArticle()
   }, [])
 
   // ------
@@ -107,15 +154,14 @@ function ArticleList(props) {
           </div>
           <div className="card articleMainCard">
             <div className="card-body mx-auto">
-              <h5 className="card-title my-3">
-                這次，來個不一樣的夏天! 夏日風格選品提案
-              </h5>
-              <span className="articleDate">2021.07.15</span>&nbsp;&nbsp;&nbsp;
-              <span className="articleAuthor">作者：小編A</span>
-              <p className="card-text mt-3 mb-3">
-                不管是三五好友或是全家同行，一定要能夠望著滿天的星星，聆聽大自然的聲音，被雲霧所包圍，體驗...{' '}
-                <Link to="#/">＋看更多</Link>
-              </p>
+              <h5 className="card-title my-3">{topArticle.aTitle}</h5>
+              <span className="articleDate">{topArticle.aDate}</span>
+              &nbsp;&nbsp;&nbsp;
+              <span className="articleAuthor">作者：{topArticle.author}</span>
+              <div className="card-text mt-4">
+                <p className="ellipsis">{topArticle.aContent}</p>
+              </div>
+              <Link to="#/">＋看更多</Link>
             </div>
           </div>
         </div>
@@ -131,7 +177,7 @@ function ArticleList(props) {
           {latest.length &&
             latest.map((value, index) => {
               return (
-                <div key={value.id} className="col-sm-4 ">
+                <Link key={value.id} className="col-sm-4 ">
                   <div className="articleLatestCard mx-auto mt-3">
                     <img
                       // src="../images/article/{value.aImg}"
@@ -147,7 +193,7 @@ function ArticleList(props) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
         </div>
@@ -167,32 +213,16 @@ function ArticleList(props) {
             <span className="articlePageTitle ml-2">熱門主題</span>
           </div>
 
-          <div className="articleTagGroup mt-2 ml-5 d-flex">
-            <Link className="nav-link" to="#">
-              ＃花蓮
-            </Link>
-            <Link className="nav-link" to="#">
-              #單日體驗
-            </Link>
-            <Link className="nav-link" to="#">
-              #夏天
-            </Link>
-            <Link className="nav-link" to="#">
-              ＃親子
-            </Link>
-            <Link className="nav-link" to="#">
-              #近溪邊
-            </Link>
-            <Link className="nav-link" to="#">
-              #宜蘭
-            </Link>
-            <Link className="nav-link" to="#">
-              ＃新手推薦
-            </Link>
-            <Link className="nav-link" to="#">
-              #大草皮
-            </Link>
-          </div>
+          {tagName.length &&
+            tagName.map((value, index) => {
+              return (
+                <div key={value.id} className="articleTagGroup mt-2 d-flex">
+                  <Link className="nav-link" to="#">
+                    {value.tagName}
+                  </Link>
+                </div>
+              )
+            })}
         </div>
       </div>
 

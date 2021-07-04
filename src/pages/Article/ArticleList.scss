@@ -48,7 +48,7 @@
 .articleMainCard {
   background-color: #fff;
   width: 28rem;
-  height: 250px;
+  height: 260px;
   margin-top: 5%;
   margin-left: 8%;
   border: transparent;
@@ -66,15 +66,25 @@
     .articleAuthor {
       color: #5e994a;
     }
-    p {
-      a {
-        color: #5e994a;
-        text-decoration: none;
+    .card-text {
+      width: auto;
+      .ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        white-space: normal;
       }
-      a:hover {
-        color: #145041;
-        text-decoration: none;
-      }
+    }
+    a {
+      color: #5e994a;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #145041;
+      text-decoration: none;
     }
   }
 }
@@ -121,7 +131,7 @@
     .articleLatestLeftImg {
       height: 100%;
       position: relative;
-      left: -70%;
+      left: -50%;
     }
 
     .card-body {
@@ -150,7 +160,7 @@
 }
 // 卡片hover字體出現
 .articleLatestCard:hover {
-  cursor: pointer;
+  // cursor: pointer;
   .card-body {
     h5 {
       opacity: 1;
