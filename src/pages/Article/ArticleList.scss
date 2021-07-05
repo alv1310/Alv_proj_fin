@@ -303,7 +303,6 @@
   }
 }
 
-
 .articleCategoryFilter {
   width: 340px;
   height: 600px;
@@ -312,8 +311,7 @@
     height: 300px;
     overflow: hidden;
     img {
-      height: 100%
-      
+      height: 100%;
     }
   }
 
@@ -321,7 +319,13 @@
     width: 320px;
     .articleCategoryTitle {
       color: #145041;
-      font-weight: 600;
+      h5 {
+        font-weight: 600;
+      }
+    }
+    .articleCategoryTitle:hover {
+      color: #5e994a;
+      text-decoration: none;
     }
     .articleDate {
       color: rgb(134, 134, 134);
@@ -329,7 +333,17 @@
     .articleAuthor {
       color: #5e994a;
     }
-    p {
+    .card-text {
+      width: auto;
+      .ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+      }
       a {
         color: #5e994a;
         text-decoration: none;

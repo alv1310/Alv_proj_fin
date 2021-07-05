@@ -7,30 +7,30 @@ import { BiRightArrowCircle } from 'react-icons/bi'
 
 function ArticleList(props) {
   // console.log(props)
-  const [articles, setArticles] = useState([])
+  // const [articles, setArticles] = useState([])
   const [latest, setLatest] = useState([])
   const [tagName, setTagName] = useState([])
   const [topArticle, setTopArticle] = useState([])
 
-  async function getArticlesFromServer() {
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/'
+  // async function getArticlesFromServer() {
+  //   // 連接的伺服器資料網址
+  //   const url = 'http://localhost:4000/articles/'
 
-    // 注意header資料格式要設定，伺服器才知道是json格式
-    const request = new Request(url, {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
+  //   // 注意header資料格式要設定，伺服器才知道是json格式
+  //   const request = new Request(url, {
+  //     method: 'GET',
+  //     headers: new Headers({
+  //       Accept: 'application/json',
+  //       'Content-Type': 'appliaction/json',
+  //     }),
+  //   })
 
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log('data', data)
-    // 設定資料
-    setArticles(data.data)
-  }
+  //   const response = await fetch(request)
+  //   const data = await response.json()
+  //   console.log('data', data)
+  //   // 設定資料
+  //   setArticles(data.data)
+  // }
 
   async function getLatestFromServer() {
     // const
@@ -97,7 +97,7 @@ function ArticleList(props) {
 
   // 一開始就會開始載入資料
   useEffect(() => {
-    getArticlesFromServer()
+    // getArticlesFromServer()
     getLatestFromServer()
     getLatestTagName()
     getTopArticle()
@@ -119,28 +119,30 @@ function ArticleList(props) {
           </div>
           <ul className="nav ml-auto articleCategoryBar mt-3">
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className="nav-link" to={'/articles/cate/2'}>
                 露營新手指南
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className="nav-link" to="/articles/cate/3">
                 親子同遊露營
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className="nav-link" to="/articles/cate/4">
                 深度野營探索
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className="nav-link" to="/articles/cate/5">
                 奢華露營體驗
               </Link>
             </li>
           </ul>
         </div>
       </div>
+
+      {/* ------------ featured -------------- */}
 
       <div className="container articleFeatured">
         <div className="row">
@@ -172,6 +174,8 @@ function ArticleList(props) {
         <div className="aClear"></div>
       </div>
 
+      {/* ------------ latest -------------- */}
+
       <div className="container articleLatest">
         <div className="row">
           <div className="articleLatestTitle mt-3 ml-5">LATEST</div>
@@ -181,7 +185,6 @@ function ArticleList(props) {
           {latest.length &&
             latest.map((value, index) => {
               return (
-
                 <Link key={value.id} className="col-sm-4 ">
                   <div className="articleLatestCard mx-auto mt-3">
                     <img
@@ -198,7 +201,6 @@ function ArticleList(props) {
                     </div>
                   </div>
                 </Link>
-                
               )
             })}
         </div>
@@ -245,7 +247,7 @@ function ArticleList(props) {
             <span className="articlePageTitle ml-2">露營新手指南</span>
           </div>
           <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
-            <Link to="#/">
+            <Link to={'/articles/cate/2'}>
               看更多內容 <BiRightArrowCircle size="25px" />
             </Link>
           </div>

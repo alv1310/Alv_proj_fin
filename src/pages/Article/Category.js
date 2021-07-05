@@ -42,7 +42,7 @@ function Category(props) {
           <div className="articleTitleGroup mt-3">
             <span className="articleLogo">
               <img
-                src="../images/article/campfun-logo.png"
+                src="../../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
             </span>
@@ -53,7 +53,7 @@ function Category(props) {
           </div>
 
           <div className="articleBackToList ml-auto mt-3">
-            <Link className="nav-link" to="#">
+            <Link className="nav-link" to="/articles/">
               返回一覽列表 <BiRightArrowCircle size="25px" />
             </Link>
           </div>
@@ -66,21 +66,23 @@ function Category(props) {
                 <div key={value.id} className="articleCategoryFilter mt-3">
                   <div className="articleCategoryFilterImg">
                     <img
-                      src="../images/article/article_27.jpg"
+                      src={`../../images/article/${value.aImg}`}
                       alt="article_27"
                     ></img>
                   </div>
                   <div className="articleCategoryFilterText ml-3 mt-3">
-                    <h5 className="articleCategoryTitle">{cate.aTitle}</h5>
+                    <Link to="#" className="articleCategoryTitle mb-3">
+                      <h5>{value.aTitle}</h5>
+                    </Link>
                     <span className="articleDate">
                       {moment(value.aDate).format('YYYY-MM-DD')}
                     </span>
                     &nbsp;&nbsp;&nbsp;
                     <span className="articleAuthor">{value.author}</span>
-                    <p className="mt-3 mb-3">
-                      {value.aContent}
+                    <div className="card-text">
+                      <p className="ellipsis mt-3 mb-1">{value.aContent}</p>
                       <Link to="#/">＋看更多</Link>
-                    </p>
+                    </div>
                   </div>
                 </div>
               )
