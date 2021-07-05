@@ -9,9 +9,13 @@ import moment from 'moment'
 function Category(props) {
   const [cate, setCate] = useState([])
 
+  // const searchParams = new URLSearchParams('')
+  // const searchParamsId = searchParams.get('id')
+
   async function getCategoryFromServer() {
     // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/cate/2'
+    const url = 'http://localhost:4000/articles/cate/2' 
+    // const url = `http://localhost:4000/articles/cate/${cid}`
 
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {

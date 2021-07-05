@@ -11,6 +11,7 @@ function ArticleList(props) {
   const [latest, setLatest] = useState([])
   const [tagName, setTagName] = useState([])
   const [topArticle, setTopArticle] = useState([])
+  // const [changCate, setChangeCate] = useState([])
 
   // async function getArticlesFromServer() {
   //   // 連接的伺服器資料網址
@@ -50,7 +51,7 @@ function ArticleList(props) {
     const data = await response.json()
     console.log('data', data)
     // 設定資料
-    setLatest(data.r)
+    setLatest(data)
   }
 
   async function getLatestTagName() {

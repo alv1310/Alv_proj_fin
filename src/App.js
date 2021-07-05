@@ -12,7 +12,7 @@ function App() {
           {/* <Route path="/articles/cate/:aCategoryId">
             <Category />
           </Route> */}
-          <Route exact path="/articles/cate/:aCategoryId">
+          <Route exact path="/articles/cate/:aCategoryId?">
             <Category />
           </Route>
 
