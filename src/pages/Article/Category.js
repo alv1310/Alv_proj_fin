@@ -1,21 +1,23 @@
-import { data } from 'jquery'
+// import { data } from 'jquery'
 import React, { useState, useEffect } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, useParams } from 'react-router-dom'
 import './ArticleList.scss'
 import { BiChevronRight } from 'react-icons/bi'
 import { BiRightArrowCircle } from 'react-icons/bi'
 import moment from 'moment'
 
 function Category(props) {
+  // const { test } = props
+  const { aCategoryId } = useParams()
   const [cate, setCate] = useState([])
 
-  // const searchParams = new URLSearchParams('')
+  // const searchParams = new URLSearchParams('props.location.search')
   // const searchParamsId = searchParams.get('id')
 
   async function getCategoryFromServer() {
     // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/cate/2' 
-    // const url = `http://localhost:4000/articles/cate/${cid}`
+    // const url = 'http://localhost:4000/articles/cate/2'
+    const url = `http://localhost:4000/articles/cate/${aCategoryId}`
 
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {

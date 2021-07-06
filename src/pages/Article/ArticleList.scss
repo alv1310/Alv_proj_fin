@@ -286,10 +286,12 @@
   }
 }
 
-// ------ 分類頁部分
+// ------ 分類頁部分 ------
 
 .articleBreadCrumb {
-  // line-height: 1.5;
+  font-weight: 600;
+  border-bottom: #5e994a 3px solid;
+  padding-bottom: 3px;
 }
 
 .articleBackToList {
@@ -354,4 +356,101 @@
       }
     }
   }
+}
+
+// ------ 單頁部分 ------
+
+.articlePostMain {
+  background: rgba(228, 235, 226, 0.856);
+  background: linear-gradient(
+    180deg,
+    rgba(228, 235, 226, 1) 0%,
+    rgba(228, 235, 226, 1) 60%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+// #a_wallpaper {
+
+//     background: rgb(22, 212, 219);
+//     z-index: 1;
+// }
+
+.articlePostBox {
+  width: 1100px;
+  position: relative;
+  // z-index: 2;
+  .articlePostPic1 {
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    float: right;
+    // left: 50%;
+    margin: 80px 40px 30px;
+    img {
+      position: absolute;
+      left: -30%;
+      height: 100%;
+    }
+  }
+
+  .a_divider {
+    float: right;
+    width: 1100px;
+    height: 80px;
+    background-color: transparent;
+  }
+
+  .articlePostPic2 {
+    width: 500px;
+    height: 380px;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    margin: 20px 40px;
+    .article_post_picS {
+      position: absolute;
+      height: 100%;
+    }
+  }
+
+  .articlePostTitle {
+    width: 400px;
+    margin-top: 5%;
+    margin-left: 8%;
+    .card-title {
+      border-left: 7px solid #5e994a;
+      padding-left: 10px;
+      font-weight: 600;
+    }
+    .articleDate {
+      color: rgb(161, 161, 161);
+    }
+    .articleAuthor {
+      color: #5e994a;
+    }
+  }
+
+  .articlePostContent {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+ 
+}
+
+// TODO: autoplay fix
+.articlePostManualPic {
+  width: 700px;
+  overflow: hidden;
+  margin: 30px auto;
+  img {
+    width: 100%;
+  }
+}
+.articlePostManualVid {
+  width: 640px;
+  height: 480px;
+  margin: 30px auto;
 }

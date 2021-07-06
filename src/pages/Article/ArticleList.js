@@ -1,4 +1,4 @@
-import { data } from 'jquery'
+// import { data } from 'jquery'
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './ArticleList.scss'
@@ -6,6 +6,7 @@ import moment from 'moment'
 import { BiRightArrowCircle } from 'react-icons/bi'
 
 function ArticleList(props) {
+  // const { setTest } = props
   // console.log(props)
   // const [articles, setArticles] = useState([])
   const [latest, setLatest] = useState([])
@@ -120,22 +121,46 @@ function ArticleList(props) {
           </div>
           <ul className="nav ml-auto articleCategoryBar mt-3">
             <li className="nav-item">
-              <Link className="nav-link" to={'/articles/cate/2'}>
+              <Link
+                className="nav-link"
+                // onClick={() => {
+                //   setTest(2)
+                // }}
+                to={'/articles/cate/2'}
+              >
                 露營新手指南
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/articles/cate/3">
+              <Link
+                className="nav-link"
+                // onClick={() => {
+                //   setTest(3)
+                // }}
+                to="/articles/cate/3"
+              >
                 親子同遊露營
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/articles/cate/4">
+              <Link
+                className="nav-link"
+                // onClick={() => {
+                //   setTest(4)
+                // }}
+                to="/articles/cate/4"
+              >
                 深度野營探索
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/articles/cate/5">
+              <Link
+                className="nav-link"
+                // onClick={() => {
+                //   setTest(5)
+                // }}
+                to="/articles/cate/5"
+              >
                 奢華露營體驗
               </Link>
             </li>
@@ -368,7 +393,7 @@ function ArticleList(props) {
             <span className="articlePageTitle ml-2">親子同遊露營</span>
           </div>
           <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
-            <Link to="#/">
+            <Link to="/articles/cate/3">
               看更多內容 <BiRightArrowCircle size="25px" />
             </Link>
           </div>
@@ -491,7 +516,7 @@ function ArticleList(props) {
           </div>
 
           <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
-            <Link to="#/">
+            <Link to="/articles/cate/4">
               看更多內容 <BiRightArrowCircle size="25px" />
             </Link>
           </div>
@@ -612,7 +637,7 @@ function ArticleList(props) {
           </div>
 
           <div className="articleMoreLinkMain mt-4 ml-auto mr-2">
-            <Link to="#/">
+            <Link to="/articles/cate/5">
               看更多內容 <BiRightArrowCircle size="25px" />
             </Link>
           </div>
