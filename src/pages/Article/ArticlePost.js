@@ -3,6 +3,7 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 import './ArticleList.scss'
 import { BiChevronRight } from 'react-icons/bi'
 import { BiRightArrowCircle } from 'react-icons/bi'
+import { BsMoon } from 'react-icons/bs'
 import moment from 'moment'
 
 function ArticlePost(props) {
@@ -165,7 +166,7 @@ function ArticlePost(props) {
       <div className="container">
         <div className="row">
           <div className="articlePostManualVid">
-            <video width="640" height="480" controls muted autoplay>
+            <video width="960" height="600" controls muted autoplay>
               <source
                 src="../../images/article/campFire.mp4"
                 type="video/mp4"
@@ -203,7 +204,7 @@ function ArticlePost(props) {
       </div>
 
       {/* ------------ 相關商品 -------------- */}
-      <div className="container">
+      <div className="container articleTagProduct">
         <div className="row">
           <div className="articleTitleGroup mt-3">
             <span className="articleLogo ">
@@ -214,7 +215,36 @@ function ArticlePost(props) {
             </span>
             <span className="articlePageTitle ml-2 mr-3">推薦品項</span>
           </div>
-          <div className="articleTagProduct"></div>
+
+          <div className="articleTagProductGroup mt-3">
+            <div className="articleTagProductCarousel mt-5">
+              {/* CAROUSEL START HERE */}
+
+              {/* THIS IS THE CARD!! */}
+              <div class="card articleTagProductCard">
+                <img
+                  class="card-img-top articleTagProduct01"
+                  src="../../images/article/article_06.jpg"
+                  alt="tag_product_1"
+                />
+                <div class="card-body">
+                  <h5 class="card-title mb-4">Amenity Dome 寢室帳</h5>
+                  <p class="card-text">
+                    以抗風性與舒適性為設計重點的經典寢室帳
+                  </p>
+                  <h5 className="card-price mb-4">NT$14,900</h5>
+                  <span className="card-rating mr-3">Rating</span>
+                  <span>
+                    <BsMoon size="25px" color="#FFD800" />
+                    <BsMoon size="25px" color="#FFD800" />
+                    <BsMoon size="25px" color="#FFD800" />
+                    <BsMoon size="25px" color="#bdbdbd" />
+                    <BsMoon size="25px" color="#bdbdbd" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -437,10 +437,8 @@
     margin-left: 10%;
     margin-right: 10%;
   }
- 
 }
 
-// TODO: autoplay fix
 .articlePostManualPic {
   width: 700px;
   overflow: hidden;
@@ -449,8 +447,46 @@
     width: 100%;
   }
 }
+
+// TODO: autoplay fix
 .articlePostManualVid {
-  width: 640px;
-  height: 480px;
+  width: 960px;
+  height: 600px;
   margin: 30px auto;
+}
+
+.articleTagProductGroup {
+  width: 1100px;
+  height: 660px;
+  background-color: #e4ebe2;
+}
+
+.articleTagProductCard {
+  width: 270px;
+  height: 450px;
+  background-color: #fff;
+  // overflow: hidden;
+  // position: relative;
+  // padding: 0;
+  border: transparent;
+  border-radius: 20px;
+  .articleTagProduct01 {
+    // height: 100%;
+    // position: absolute;
+    // margin-top: 0px;
+    border-radius: 20px 20px 0 0;
+  }
+  .card-title,
+  .card-price,
+  .card-rating {
+    color: #707070;
+  }
+  .card-text {
+    border-bottom: 1px solid #bdbdbd;
+    padding-bottom: 1.3rem;
+    color: #999999;
+  }
+  .card-rating {
+    font-weight: 600;
+  }
 }
