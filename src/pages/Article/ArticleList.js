@@ -1,6 +1,6 @@
 // import { data } from 'jquery'
 import React, { useState, useEffect } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, useParams } from 'react-router-dom'
 import './ArticleList.scss'
 import moment from 'moment'
 import { BiRightArrowCircle } from 'react-icons/bi'
@@ -12,6 +12,8 @@ function ArticleList(props) {
   const [latest, setLatest] = useState([])
   const [tagName, setTagName] = useState([])
   const [topArticle, setTopArticle] = useState([])
+  const [tagFilter, setTagFilter] = useState([])
+  const { tagId } = useParams()
   // const [changCate, setChangeCate] = useState([])
 
   // async function getArticlesFromServer() {
@@ -35,7 +37,6 @@ function ArticleList(props) {
   // }
 
   async function getLatestFromServer() {
-    // const
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/latest'
 
@@ -56,7 +57,6 @@ function ArticleList(props) {
   }
 
   async function getLatestTagName() {
-    // const
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/tag'
 
@@ -77,7 +77,6 @@ function ArticleList(props) {
   }
 
   async function getTopArticle() {
-    // const
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/a/56'
 
@@ -97,12 +96,33 @@ function ArticleList(props) {
     setTopArticle(data)
   }
 
+  async function getTagFilterFromServer() {
+    // 連接的伺服器資料網址
+    const url = `http://localhost:4000/articles/tag/${tagId}`
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('data', data)
+    // 設定資料
+    setTagFilter(data)
+  }
+
   // 一開始就會開始載入資料
   useEffect(() => {
     // getArticlesFromServer()
     getLatestFromServer()
     getLatestTagName()
     getTopArticle()
+    getTagFilterFromServer()
   }, [])
 
   // ------
@@ -193,7 +213,7 @@ function ArticleList(props) {
               <div className="card-text mt-4">
                 <p className="ellipsis">{topArticle.aContent}</p>
               </div>
-              <Link to="#/">＋看更多</Link>
+              <Link to={`articles/a/${topArticle.aId}`}>＋看更多</Link>
             </div>
           </div>
         </div>
@@ -250,7 +270,7 @@ function ArticleList(props) {
             tagName.map((value, index) => {
               return (
                 <div key={value.id} className="articleTagGroup mt-2 d-flex">
-                  <Link className="nav-link" to="#">
+                  <Link className="nav-link" to={`articles/tag/${tagId}`}>
                     {value.tagName}
                   </Link>
                 </div>

@@ -11,9 +11,9 @@ function App() {
     <Router>
       <>
         <Switch>
-          {/* <Route path="/articles/cate/:aCategoryId">
-            <Category />
-          </Route> */}
+          <Route path="/articles/tag/:tagId">
+            <Tag />
+          </Route>
           <Route exact path="/articles/cate/:aCategoryId?">
             <Category />
           </Route>

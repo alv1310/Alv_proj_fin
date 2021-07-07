@@ -3,17 +3,19 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 import './ArticleList.scss'
 import { BiChevronRight } from 'react-icons/bi'
 import { BiRightArrowCircle } from 'react-icons/bi'
-import { BsMoon } from 'react-icons/bs'
+// import { BsMoon } from 'react-icons/bs'
 import moment from 'moment'
+import ArticleCarousel from '../../components/ArticleCarousel'
 
 function ArticlePost(props) {
   const { aId } = useParams()
   const [post, setPost] = useState([])
+  const [articleTag, setArticleTag] = useState([])
 
   async function getArticlePostFromServer() {
     // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/a/12'
-    // const url = `http://localhost:4000/articles/a/${aId}`
+    // const url = 'http://localhost:4000/articles/a/12'
+    const url = `http://localhost:4000/articles/a/${aId}`
 
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
@@ -31,9 +33,30 @@ function ArticlePost(props) {
     setPost(data)
   }
 
+async function getArticleTagFromServer() {
+     // 連接的伺服器資料網址    
+    const url = `http://localhost:4000/articles/a/tag/${aId}`
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('data', data)
+    // 設定資料
+    setArticleTag(data)
+}
+
   // 一開始就會開始載入資料
   useEffect(() => {
     getArticlePostFromServer()
+    getArticleTagFromServer()
   }, [])
 
   // ------
@@ -88,72 +111,18 @@ function ArticlePost(props) {
 
             <div className="articlePostTitle">
               <div className="card-body mx-auto">
-                {/* <h5 className="card-title my-3">{topArticle.aTitle}</h5> */}
-                <h5 className="card-title my-3">
-                  這次，來個不一樣的的夏天!夏日風格選品提案
-                </h5>
-                {/* <span className="articleDate">
-                {moment(topArticle.aDate).format('YYYY-MM-DD')}
-              </span> */}
-                <span className="articleDate">2010.1.1</span>
+                <h5 className="card-title my-3">{post.aTitle}</h5>
+                <span className="articleDate">
+                  {moment(post.aDate).format('YYYY-MM-DD')}
+                </span>
                 &nbsp;&nbsp;&nbsp;
-                {/* <span className="articleAuthor">作者：{topArticle.author}</span> */}
-                <span className="articleAuthor">作者：AAA</span>
-                {/* <div className="card-text mt-4">
-                <p className="ellipsis">{topArticle.aContent}</p>
-              </div> */}
+                <span className="articleAuthor">作者：{post.author}</span>
               </div>
             </div>
 
             {/* <div id="a_wallpaper"></div> */}
 
-            <div className="articlePostContent">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum,
-              facilis. Totam eveniet sit commodi quisquam? Dolore aut libero
-              cumque molestiae rerum obcaecati delectus minima. Explicabo
-              officiis non delectus? Delectus, cupiditate! Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Nihil soluta debitis nulla eius
-              facere sed in sit odit omnis. Consequatur ducimus tempora animi
-              hic odio, ad voluptates consequuntur dolorum unde! Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Harum, facilis. Totam
-              eveniet sit commodi quisquam? Dolore aut libero cumque molestiae
-              rerum obcaecati delectus minima. Explicabo officiis non delectus?
-              Delectus, cupiditate! Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Nihil soluta debitis nulla eius facere sed in
-              sit odit omnis. Consequatur ducimus tempora animi hic odio, ad
-              voluptates consequuntur dolorum unde! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Harum, facilis. Totam eveniet sit
-              commodi quisquam? Dolore aut libero cumque molestiae rerum
-              obcaecati delectus minima. Explicabo officiis non delectus?
-              Delectus, cupiditate! Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Nihil soluta debitis nulla eius facere sed in
-              sit odit omnis. Consequatur ducimus tempora animi hic odio, ad
-              voluptates consequuntur dolorum unde! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Harum, facilis. Totam eveniet sit
-              commodi quisquam? Dolore aut libero cumque molestiae rerum
-              obcaecati delectus minima. Explicabo officiis non delectus?
-              Delectus, cupiditate! Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Nihil soluta debitis nulla eius facere sed in
-              sit odit omnis. Consequatur ducimus tempora animi hic odio, ad
-              voluptates consequuntur dolorum unde! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Harum, facilis. Totam eveniet sit
-              commodi quisquam? Dolore aut libero cumque molestiae rerum
-              obcaecati delectus minima. Explicabo officiis non delectus?
-              Delectus, cupiditate! Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Nihil soluta debitis nulla eius facere sed in
-              sit odit omnis. Consequatur ducimus tempora animi hic odio, ad
-              voluptates consequuntur dolorum unde! adipisicing elit. Nihil
-              soluta debitis nulla eius facere sed in sit odit omnis.
-              Consequatur ducimus tempora animi hic odio, ad voluptates
-              consequuntur dolorum unde! Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Harum, facilis. Totam eveniet sit commodi
-              quisquam? Dolore aut libero cumque molestiae rerum obcaecati
-              delectus minima. Explicabo officiis non delectus? Delectus,
-              cupiditate! Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Nihil soluta debitis nulla eius facere sed in sit odit
-              omnis. Consequatur ducimus tempora animi hic odio, ad voluptates
-              consequuntur dolorum unde!
-            </div>
+            <div className="articlePostContent">{post.aContent}</div>
 
             <div className="articlePostManualPic">
               <img src="../../images/article/manual.jpg" alt=""></img>
@@ -178,7 +147,7 @@ function ArticlePost(props) {
 
       {/* ------------ 標籤部分 -------------- */}
 
-      <div className="container">
+      <div className="container my-5">
         <div className="row">
           <div className="articleTitleGroup mt-3">
             <span className="articleLogo ">
@@ -190,8 +159,8 @@ function ArticlePost(props) {
             <span className="articlePageTitle ml-2 mr-3">熱門主題</span>
           </div>
 
-          {/* {tagName.length &&
-            tagName.map((value, index) => {
+          {articleTag.length &&
+            articleTag.map((value, index) => {
               return (
                 <div key={value.id} className="articleTagGroup mt-2 d-flex">
                   <Link className="nav-link" to="#">
@@ -199,12 +168,12 @@ function ArticlePost(props) {
                   </Link>
                 </div>
               )
-            })} */}
+            })}
         </div>
       </div>
 
       {/* ------------ 相關商品 -------------- */}
-      <div className="container articleTagProduct">
+      <div className="container">
         <div className="row">
           <div className="articleTitleGroup mt-3">
             <span className="articleLogo ">
@@ -215,34 +184,15 @@ function ArticlePost(props) {
             </span>
             <span className="articlePageTitle ml-2 mr-3">推薦品項</span>
           </div>
+        </div>
+      </div>
 
+      <div className="container articleTagProduct mt-3">
+        <div className="row">
           <div className="articleTagProductGroup mt-3">
-            <div className="articleTagProductCarousel mt-5">
-              {/* CAROUSEL START HERE */}
-
-              {/* THIS IS THE CARD!! */}
-              <div class="card articleTagProductCard">
-                <img
-                  class="card-img-top articleTagProduct01"
-                  src="../../images/article/article_06.jpg"
-                  alt="tag_product_1"
-                />
-                <div class="card-body">
-                  <h5 class="card-title mb-4">Amenity Dome 寢室帳</h5>
-                  <p class="card-text">
-                    以抗風性與舒適性為設計重點的經典寢室帳
-                  </p>
-                  <h5 className="card-price mb-4">NT$14,900</h5>
-                  <span className="card-rating mr-3">Rating</span>
-                  <span>
-                    <BsMoon size="25px" color="#FFD800" />
-                    <BsMoon size="25px" color="#FFD800" />
-                    <BsMoon size="25px" color="#FFD800" />
-                    <BsMoon size="25px" color="#bdbdbd" />
-                    <BsMoon size="25px" color="#bdbdbd" />
-                  </span>
-                </div>
-              </div>
+            <div className="articleTagProductCarousel mt-5 mx-auto">
+              {/* CAROUSEL STARTS HERE */}
+              <ArticleCarousel />
             </div>
           </div>
         </div>
@@ -251,7 +201,7 @@ function ArticlePost(props) {
       {/* ------------ 留言板 -------------- */}
       <div className="container">
         <div className="row">
-          <div className="articleTitleGroup mt-3">
+          <div className="articleTitleGroup mt-5">
             <span className="articleLogo ">
               <img
                 src="../../images/article/campfun-logo.png"
@@ -262,6 +212,58 @@ function ArticlePost(props) {
           </div>
           <div className="articleComment"></div>
         </div>
+
+        {/* ------ 輸入留言 ----- */}
+
+        <div class="row articleComment form-group mt-3 ml-3">
+          <textarea
+            class="form-control"
+            rows="3"
+            placeholder="我的留言..."
+          ></textarea>
+          <button type="button" class="articleCommentSubmit mt-3 ml-auto mr-3">
+            送出留言
+          </button>
+        </div>
+
+        {/* ------ 留言紀錄 ------ */}
+
+        <div class="media articleCommentGroup mt-5">
+          <img
+            class="d-flex rounded-circle avatar z-depth-1-half mr-3"
+            src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+            alt="Avatar"
+          />
+
+          <div class="media-body ml-3">
+            <h5 class="mt-0 font-weight-bold articleUser">Anna Smith</h5>
+            對新手來說非常適合，值得一試，是近期很棒的熱門露營地點！
+            <div class="media-body mt-3 d-flex flex-column ">
+              <div class="articleReply">
+                感謝您喜愛我們這期的主題企劃，期待與您再次相見！
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* ------ */}
+        <div class="media articleCommentGroup mt-5">
+          <img
+            class="d-flex rounded-circle avatar z-depth-1-half mr-3"
+            src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg"
+            alt="Avatar"
+          />
+          <div class="media-body ml-3">
+            <h5 class="mt-0 font-weight-bold articleUser">Caroline Horwitz</h5>
+            內容有趣，想看更多相關故事推薦
+            <div class="media-body mt-3 d-flex flex-column ">
+              <div class="articleReply">
+                歡迎加入我們，想看更多故事可點選上方連結前往逛逛！
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/*  */}
       </div>
     </>
   )

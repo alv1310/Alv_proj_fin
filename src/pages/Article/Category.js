@@ -77,7 +77,10 @@ function Category(props) {
                     ></img>
                   </div>
                   <div className="articleCategoryFilterText ml-3 mt-3">
-                    <Link to="#" className="articleCategoryTitle mb-3">
+                    <Link
+                      to={`/articles/a/${value.aId}`}
+                      className="articleCategoryTitle mb-3"
+                    >
                       <h5>{value.aTitle}</h5>
                     </Link>
                     <span className="articleDate">
@@ -87,7 +90,7 @@ function Category(props) {
                     <span className="articleAuthor">{value.author}</span>
                     <div className="card-text">
                       <p className="ellipsis mt-3 mb-1">{value.aContent}</p>
-                      <Link to="#/">＋看更多</Link>
+                      <Link to={`/articles/a/${value.aId}`}>＋看更多</Link>
                     </div>
                   </div>
                 </div>
