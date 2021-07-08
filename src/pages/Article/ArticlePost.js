@@ -28,13 +28,13 @@ function ArticlePost(props) {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('data', data)
+    console.log('article data', data)
     // 設定資料
     setPost(data)
   }
 
-async function getArticleTagFromServer() {
-     // 連接的伺服器資料網址    
+  async function getArticleTagFromServer() {
+    // 連接的伺服器資料網址
     const url = `http://localhost:4000/articles/a/tag/${aId}`
 
     // 注意header資料格式要設定，伺服器才知道是json格式
@@ -48,10 +48,10 @@ async function getArticleTagFromServer() {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('data', data)
+    console.log('tags data', data)
     // 設定資料
     setArticleTag(data)
-}
+  }
 
   // 一開始就會開始載入資料
   useEffect(() => {

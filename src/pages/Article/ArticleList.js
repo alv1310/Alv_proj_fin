@@ -11,11 +11,10 @@ function ArticleList(props) {
   // const [articles, setArticles] = useState([])
   const [latest, setLatest] = useState([])
   const [tagName, setTagName] = useState([])
-  const [topArticle, setTopArticle] = useState([3])
+  const [topArticle, setTopArticle] = useState([56])
   const [tagFilter, setTagFilter] = useState([])
   const { tagId } = useParams()
   // const [changCate, setChangeCate] = useState([])
-
 
   // async function getArticlesFromServer() {
   //   // 連接的伺服器資料網址
@@ -79,7 +78,7 @@ function ArticleList(props) {
 
   async function getTopArticle() {
     // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/a/3'
+    const url = 'http://localhost:4000/articles/a/56'
 
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
@@ -218,7 +217,7 @@ function ArticleList(props) {
                 onClick={() => {
                   setTopArticle(topArticle)
                 }}
-                to={'articles/a/3'}
+                to={'/articles/a/56'}
               >
                 ＋看更多
               </Link>
@@ -278,7 +277,13 @@ function ArticleList(props) {
             tagName.map((value, index) => {
               return (
                 <div key={value.id} className="articleTagGroup mt-2 d-flex">
-                  <Link className="nav-link" to={`articles/tag/${tagId}`}>
+                  <Link
+                    className="nav-link"
+                    onClick={() => {
+                      setTagFilter(tagFilter)
+                    }}
+                    to={`/articles/tag/${tagId}`}
+                  >
                     {value.tagName}
                   </Link>
                 </div>
