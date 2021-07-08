@@ -11,10 +11,11 @@ function ArticleList(props) {
   // const [articles, setArticles] = useState([])
   const [latest, setLatest] = useState([])
   const [tagName, setTagName] = useState([])
-  const [topArticle, setTopArticle] = useState([])
+  const [topArticle, setTopArticle] = useState([3])
   const [tagFilter, setTagFilter] = useState([])
   const { tagId } = useParams()
   // const [changCate, setChangeCate] = useState([])
+
 
   // async function getArticlesFromServer() {
   //   // 連接的伺服器資料網址
@@ -51,7 +52,7 @@ function ArticleList(props) {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('data', data)
+    console.log('data 3 latest cards', data)
     // 設定資料
     setLatest(data)
   }
@@ -71,14 +72,14 @@ function ArticleList(props) {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('data', data)
+    console.log('data latest tag', data)
     // 設定資料
     setTagName(data.r)
   }
 
   async function getTopArticle() {
     // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/a/56'
+    const url = 'http://localhost:4000/articles/a/3'
 
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
@@ -91,7 +92,7 @@ function ArticleList(props) {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('data', data)
+    console.log('data top article', data)
     // 設定資料
     setTopArticle(data)
   }
@@ -111,7 +112,7 @@ function ArticleList(props) {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('data', data)
+    console.log('data tag filters', data)
     // 設定資料
     setTagFilter(data)
   }
@@ -213,7 +214,14 @@ function ArticleList(props) {
               <div className="card-text mt-4">
                 <p className="ellipsis">{topArticle.aContent}</p>
               </div>
-              <Link to={`articles/a/${topArticle.aId}`}>＋看更多</Link>
+              <Link
+                onClick={() => {
+                  setTopArticle(topArticle)
+                }}
+                to={'articles/a/3'}
+              >
+                ＋看更多
+              </Link>
             </div>
           </div>
         </div>
