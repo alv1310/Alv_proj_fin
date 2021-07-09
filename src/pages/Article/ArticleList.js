@@ -17,7 +17,8 @@ function ArticleList(props) {
   // const { tagId } = useParams()
   const [tagId, setTagId] = useState([])
   // const [changCate, setChangeCate] = useState([])
-
+  const [cate, setCate] = useState([])
+  const { aCategoryId } = useParams()
   // async function getArticlesFromServer() {
   //   // 連接的伺服器資料網址
   //   const url = 'http://localhost:4000/articles/'
@@ -122,6 +123,28 @@ function ArticleList(props) {
     setTagFilter(data)
   }
 
+  async function getCategoryFromServer() {
+    // 連接的伺服器資料網址
+    // const url = 'http://localhost:4000/articles/cate/2'
+    const url = `http://localhost:4000/articles/cate/${aCategoryId}`
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('cate data', data)
+
+    // 設定資料
+    if(data) setCate(data)
+  }
+
   // 一開始就會開始載入資料
   useEffect(() => {
     // getArticlesFromServer()
@@ -129,6 +152,7 @@ function ArticleList(props) {
     getLatestTagName()
     getTopArticle()
     getTagFilterFromServer()
+    getCategoryFromServer()
   }, [])
 
   // ------
@@ -137,7 +161,7 @@ function ArticleList(props) {
       <div className="container">
         <div className="row">
           <div className="articleTitleGroup mt-3">
-          <Link className="articleLogo" to="/articles/">
+            <Link className="articleLogo" to="/articles/">
               <img
                 src="../../images/article/campfun-logo.png"
                 alt="campfun-logo"
@@ -323,6 +347,7 @@ function ArticleList(props) {
         </div>
 
         <div className="row">
+        
           <div className="articleCategoryMain1 d-flex">
             <div className="articleCategoryMain1_Large mt-3">
               <div className="articleCategoryLargeImg">
@@ -333,6 +358,7 @@ function ArticleList(props) {
               </div>
               <div className="articleCategoryLargeText ml-3 mt-3">
                 <h5 className="articleCategoryTitle">
+                {cate.length > 0 && cate[0].aTitle}
                   登山、露營再不是難事！野外露營、探險知識一次學會！
                 </h5>
                 <span className="articleDate">2021.07.15</span>
