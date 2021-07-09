@@ -42,20 +42,25 @@ function Tag(props) {
       <div className="container">
         <div className="row">
           <div className="articleTitleGroup mt-3">
-            <span className="articleLogo">
+            <Link className="articleLogo" to="/articles/">
               <img
                 src="../../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
-            </span>
-            <span className="articlePageTitle ml-2">
+            </Link>
+            <Link className="articlePageTitle ml-2" to="/articles/">
               風格誌 <BiChevronRight />
-            </span>
+            </Link>
             <span className="articleBreadCrumb ml-2">#櫻花</span>
           </div>
 
           <div className="articleBackToList ml-auto mt-3">
-            <Link className="nav-link" to="/articles/">
+            <Link
+              className="nav-link"
+              onClick={() => {
+                props.history.goBack()
+              }}
+            >
               返回一覽列表 <BiRightArrowCircle size="25px" />
             </Link>
           </div>

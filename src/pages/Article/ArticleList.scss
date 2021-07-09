@@ -13,6 +13,14 @@
 .articlePageTitle {
   font-weight: 600;
   font-size: 20px;
+  color: #000000;
+}
+
+.articleTitleGroup:hover .articlePageTitle,
+.articleTitleGroup:hover .articleTagTitle,
+.articleTitleGroup:hover .articlePageTitle {
+  text-decoration: none;
+  color: #000;
 }
 
 .articleCategoryBar {
@@ -111,7 +119,7 @@
       height: 100%;
       position: relative;
       left: -60%;
-      transform: scaleX(-1);
+      // transform: scaleX(-1);
     }
   }
 }
@@ -392,7 +400,7 @@
     margin: 80px 40px 30px;
     img {
       position: absolute;
-      left: -30%;
+      left: -70%;
       height: 100%;
     }
   }

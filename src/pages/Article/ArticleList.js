@@ -4,6 +4,7 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 import './ArticleList.scss'
 import moment from 'moment'
 import { BiRightArrowCircle } from 'react-icons/bi'
+import { BiChevronRight } from 'react-icons/bi'
 
 function ArticleList(props) {
   // const { setTest } = props
@@ -13,7 +14,8 @@ function ArticleList(props) {
   const [tagName, setTagName] = useState([])
   const [topArticle, setTopArticle] = useState([56])
   const [tagFilter, setTagFilter] = useState([])
-  const { tagId } = useParams()
+  // const { tagId } = useParams()
+  const [tagId, setTagId] = useState([])
   // const [changCate, setChangeCate] = useState([])
 
   // async function getArticlesFromServer() {
@@ -36,6 +38,7 @@ function ArticleList(props) {
   //   setArticles(data.data)
   // }
 
+  // 取得最新3篇文章
   async function getLatestFromServer() {
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/latest'
@@ -56,6 +59,7 @@ function ArticleList(props) {
     setLatest(data)
   }
 
+  // 取得最新8個標籤
   async function getLatestTagName() {
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/tag'
@@ -76,6 +80,7 @@ function ArticleList(props) {
     setTagName(data.r)
   }
 
+  // 取得置頂文章簡介
   async function getTopArticle() {
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/a/56'
@@ -96,6 +101,7 @@ function ArticleList(props) {
     setTopArticle(data)
   }
 
+  // 取得標籤搜尋所帶多篇文章
   async function getTagFilterFromServer() {
     // 連接的伺服器資料網址
     const url = `http://localhost:4000/articles/tag/${tagId}`
@@ -131,13 +137,15 @@ function ArticleList(props) {
       <div className="container">
         <div className="row">
           <div className="articleTitleGroup mt-3">
-            <span className="articleLogo ">
+          <Link className="articleLogo" to="/articles/">
               <img
-                src="../images/article/campfun-logo.png"
+                src="../../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
-            </span>
-            <span className="articlePageTitle ml-2">風格誌</span>
+            </Link>
+            <Link className="articlePageTitle ml-2" to="/articles/">
+              風格誌 <BiChevronRight />
+            </Link>
           </div>
           <ul className="nav ml-auto articleCategoryBar mt-3">
             <li className="nav-item">
@@ -270,9 +278,10 @@ function ArticleList(props) {
                 alt="campfun-logo"
               ></img>
             </span>
+            {console.log(tagName)}
             <span className="articlePageTitle ml-2 mr-3">熱門主題</span>
           </div>
-{/*  */}
+          {/*  */}
           {tagName.length &&
             tagName.map((value, index) => {
               return (
@@ -281,12 +290,12 @@ function ArticleList(props) {
                     className="nav-link"
                     onClick={() => {
                       setTagFilter(tagFilter)
+                      setTagId(value.tagId)
                     }}
-                    to={`/articles/tag/${tagId}`}
+                    to={`/articles/tag/${value.tagId}`}
                   >
                     {value.tagName}
                   </Link>
-                  
                 </div>
               )
             })}
@@ -562,7 +571,7 @@ function ArticleList(props) {
               <div className="articleCategoryLargeImg">
                 <img
                   className="article_03_img"
-                  src="../images/article/article_34.jpg"
+                  src="../images/article/item_20210628104655.jpeg"
                   alt="article_34"
                 ></img>
               </div>
@@ -718,7 +727,7 @@ function ArticleList(props) {
                 <div className="articleCategory_SmallL">
                   <div className="articleCategory_SmallLImg">
                     <img
-                      src="../images/article/article_24.jpg"
+                      src="../images/article/item_20210628102307.jpg"
                       alt="article_24"
                     ></img>
                   </div>
@@ -735,7 +744,7 @@ function ArticleList(props) {
                 <div className="articleCategory_SmallR">
                   <div className="articleCategory_SmallLImg">
                     <img
-                      src="../images/article/article_19.jpg"
+                      src="../images/article/item_20210628104724.jpg"
                       alt="article_19"
                     ></img>
                   </div>

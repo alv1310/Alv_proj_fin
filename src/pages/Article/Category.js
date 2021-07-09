@@ -30,7 +30,8 @@ function Category(props) {
 
     const response = await fetch(request)
     const data = await response.json()
-    console.log('data', data)
+    console.log('cate data', data)
+
     // 設定資料
     setCate(data)
   }
@@ -45,31 +46,41 @@ function Category(props) {
     <>
       <div className="container">
         <div className="row">
+          {/* {cate.length &&
+            cate.map((value, index) => {
+              return ( */}
           <div className="articleTitleGroup mt-3">
-            <span className="articleLogo">
+            <Link className="articleLogo" to="/articles/">
               <img
                 src="../../images/article/campfun-logo.png"
                 alt="campfun-logo"
               ></img>
-            </span>
-            <span className="articlePageTitle ml-2">
+            </Link>
+            <Link className="articlePageTitle ml-2" to="/articles/">
               風格誌 <BiChevronRight />
-            </span>
+            </Link>
             <span className="articleBreadCrumb ml-2">露營新手指南</span>
+            {/* {cate[0].aCatName} */}
           </div>
 
           <div className="articleBackToList ml-auto mt-3">
-            <Link className="nav-link" to="/articles/">
+            <Link
+              className="nav-link"
+              // to="/articles/"
+              onClick={() => {
+                props.history.goBack()
+              }}
+            >
               返回一覽列表 <BiRightArrowCircle size="25px" />
             </Link>
           </div>
         </div>
 
-        <div className="row d-flex justify-content-between">
+        <div className="row d-flex">
           {cate.length &&
             cate.map((value, index) => {
               return (
-                <div key={value.id} className="articleCategoryFilter mt-3">
+                <div key={value.id} className="articleCategoryFilter mt-3 mx-3">
                   <div className="articleCategoryFilterImg">
                     <img
                       src={`../../images/article/${value.aImg}`}

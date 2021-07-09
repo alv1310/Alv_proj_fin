@@ -21,7 +21,7 @@ export default class MultipleItems extends Component {
             <div class="card articleTagProductCard">
               <img
                 class="card-img-top articleTagProduct01"
-                src="../../images/article/article_06.jpg"
+                src="../../images/article/article_27.jpg"
                 alt="tag_product_1"
               />
               <div class="card-body">
@@ -43,7 +43,7 @@ export default class MultipleItems extends Component {
             <div class="card articleTagProductCard">
               <img
                 class="card-img-top articleTagProduct01"
-                src="../../images/article/article_06.jpg"
+                src="../../images/article/article_27.jpg"
                 alt="tag_product_1"
               />
               <div class="card-body">
@@ -65,7 +65,7 @@ export default class MultipleItems extends Component {
             <div class="card articleTagProductCard">
               <img
                 class="card-img-top articleTagProduct01"
-                src="../../images/article/article_06.jpg"
+                src="../../images/article/article_27.jpg"
                 alt="tag_product_1"
               />
               <div class="card-body">
@@ -87,7 +87,7 @@ export default class MultipleItems extends Component {
             <div class="card articleTagProductCard">
               <img
                 class="card-img-top articleTagProduct01"
-                src="../../images/article/article_06.jpg"
+                src="../../images/article/article_27.jpg"
                 alt="tag_product_1"
               />
               <div class="card-body">
@@ -109,7 +109,7 @@ export default class MultipleItems extends Component {
             <div class="card articleTagProductCard">
               <img
                 class="card-img-top articleTagProduct01"
-                src="../../images/article/article_06.jpg"
+                src="../../images/article/article_27.jpg"
                 alt="tag_product_1"
               />
               <div class="card-body">
@@ -131,7 +131,7 @@ export default class MultipleItems extends Component {
             <div class="card articleTagProductCard">
               <img
                 class="card-img-top articleTagProduct01"
-                src="../../images/article/article_06.jpg"
+                src="../../images/article/article_27.jpg"
                 alt="tag_product_1"
               />
               <div class="card-body">
