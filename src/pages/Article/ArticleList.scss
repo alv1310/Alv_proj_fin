@@ -216,7 +216,7 @@
 }
 
 .articleCategoryMain1_Large {
-  width: 570px;
+  width: 560px;
   height: 700px;
   .articleCategoryLargeImg {
     width: 550px;
@@ -265,14 +265,15 @@
 }
 
 .articleCategory_Small {
-  width: 570px;
+  width: 580px;
   height: 700px;
-  .articleCategory_SmallTop,
-  .articleCategory_SmallBottom {
-    width: 570px;
-    height: 300px;
+
+  // .articleCategory_SmallTop,
+  // .articleCategory_SmallBottom {
+  //   width: 570px;
+  //   height: 300px;
     .articleCategory_SmallLImg {
-      width: 275px;
+      width: 270px;
       height: 200px;
       overflow: hidden;
       img {
@@ -280,7 +281,7 @@
       }
     }
     .articleCategorySmallText {
-      width: 260px;
+      width: 250px;
       .articleCategoryTitle {
         color: #145041;
         font-weight: 600;
@@ -292,7 +293,7 @@
         color: #5e994a;
       }
     }
-  }
+  // }
 }
 
 // ------ 分類頁部分 ------

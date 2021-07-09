@@ -16,28 +16,13 @@ function ArticleList(props) {
   const [tagFilter, setTagFilter] = useState([])
   // const { tagId } = useParams()
   const [tagId, setTagId] = useState([])
-  // const [changCate, setChangeCate] = useState([])
+
+  const [cateTop, setCateTop] = useState([])
+
   const [cate, setCate] = useState([])
   const { aCategoryId } = useParams()
-  // async function getArticlesFromServer() {
-  //   // 連接的伺服器資料網址
-  //   const url = 'http://localhost:4000/articles/'
 
-  //   // 注意header資料格式要設定，伺服器才知道是json格式
-  //   const request = new Request(url, {
-  //     method: 'GET',
-  //     headers: new Headers({
-  //       Accept: 'application/json',
-  //       'Content-Type': 'appliaction/json',
-  //     }),
-  //   })
 
-  //   const response = await fetch(request)
-  //   const data = await response.json()
-  //   console.log('data', data)
-  //   // 設定資料
-  //   setArticles(data.data)
-  // }
 
   // 取得最新3篇文章
   async function getLatestFromServer() {
@@ -123,6 +108,7 @@ function ArticleList(props) {
     setTagFilter(data)
   }
 
+  // 取得類別多篇文章
   async function getCategoryFromServer() {
     // 連接的伺服器資料網址
     // const url = 'http://localhost:4000/articles/cate/2'
@@ -142,7 +128,30 @@ function ArticleList(props) {
     console.log('cate data', data)
 
     // 設定資料
-    if(data) setCate(data)
+    if (data) setCate(data)
+  }
+
+  // 取得5篇文章
+  async function getTopCategoryFromServer() {
+    // 連接的伺服器資料網址
+    // const url = 'http://localhost:4000/articles/cate/2'
+    const url = `http://localhost:4000/articles/cate/top/${aCategoryId}`
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('top cate data', data)
+
+    // 設定資料
+    if (data) setCateTop(data)
   }
 
   // 一開始就會開始載入資料
@@ -153,6 +162,7 @@ function ArticleList(props) {
     getTopArticle()
     getTagFilterFromServer()
     getCategoryFromServer()
+    getTopCategoryFromServer()
   }, [])
 
   // ------
@@ -347,7 +357,6 @@ function ArticleList(props) {
         </div>
 
         <div className="row">
-        
           <div className="articleCategoryMain1 d-flex">
             <div className="articleCategoryMain1_Large mt-3">
               <div className="articleCategoryLargeImg">
@@ -358,7 +367,8 @@ function ArticleList(props) {
               </div>
               <div className="articleCategoryLargeText ml-3 mt-3">
                 <h5 className="articleCategoryTitle">
-                {cate.length > 0 && cate[0].aTitle}
+                  {/* {cate.length > 0 && cate[0].aTitle} */}
+                  {cateTop.aTitle}
                   登山、露營再不是難事！野外露營、探險知識一次學會！
                 </h5>
                 <span className="articleDate">2021.07.15</span>
@@ -370,80 +380,79 @@ function ArticleList(props) {
                 </p>
               </div>
             </div>
-            <div className="articleCategory_Small mt-3">
-              <div className="articleCategory_SmallTop d-flex d-flex justify-content-between">
-                <div className="articleCategory_SmallL">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      className="article_11_img"
-                      src="../images/article/article_11.jpeg"
-                      alt="article_11"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      從營地到野地，帶你體驗露 營的不同樂趣
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
-                </div>
 
-                <div className="articleCategory_SmallR">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_20.jpg"
-                      alt="article_20"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      第一次親子健行好好玩！ 新手家庭也能輕鬆入門
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+            {/* 右邊半部 */}
+
+            <div className="articleCategory_Small mt-3 d-flex flex-wrap">
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    className="article_11_img"
+                    src="../images/article/article_11.jpeg"
+                    alt="article_11"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    從營地到野地，帶你體驗露 營的不同樂趣
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
                 </div>
               </div>
 
-              <div className="articleCategory_SmallBottom d-flex d-flex justify-content-between mt-5">
-                <div className="articleCategory_SmallL">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_13.jpeg"
-                      alt="article_13"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      出發台灣山林：新手也能走 從里山到深山的步道小旅行
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_20.jpg"
+                    alt="article_20"
+                  ></img>
                 </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    第一次親子健行好好玩！ 新手家庭也能輕鬆入門
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
+                </div>
+              </div>
 
-                <div className="articleCategory_SmallR">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_07.jpg"
-                      alt="article_07"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      新手必修的登山露營課
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_13.jpeg"
+                    alt="article_13"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    出發台灣山林：新手也能走 從里山到深山的步道小旅行
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
+                </div>
+              </div>
+
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_07.jpg"
+                    alt="article_07"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3  mb-3">
+                  <h5 className="articleCategoryTitle">新手必修的登山露營課</h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
                 </div>
               </div>
             </div>
+
+            {/* 右邊半部 */}
           </div>
         </div>
       </div>
@@ -470,81 +479,80 @@ function ArticleList(props) {
 
         <div className="row">
           <div className="articleCategoryMain1 d-flex">
-            <div className="articleCategory_Small mt-3">
-              <div className="articleCategory_SmallTop d-flex d-flex justify-content-between">
-                <div className="articleCategory_SmallL">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      className="article_15_img"
-                      src="../images/article/article_15.jpeg"
-                      alt="article_15"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      帶你走進大自然，用美食向美景致敬！
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
-                </div>
+            {/* 右邊半部 */}
 
-                <div className="articleCategory_SmallR">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_06.jpg"
-                      alt="article_06"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      山林癒：沐浴山林擁抱樹木 ，借助大自然力量自我療癒
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+            <div className="articleCategory_Small mt-3 d-flex flex-wrap">
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    className="article_15_img"
+                    src="../images/article/article_15.jpeg"
+                    alt="article_15"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    帶你走進大自然，用美食向美景致敬！
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
                 </div>
               </div>
 
-              <div className="articleCategory_SmallBottom d-flex d-flex justify-content-between mt-5">
-                <div className="articleCategory_SmallL">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_07.jpg"
-                      alt="article_07"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      ～運用先人的智慧結晶， 展開一場現代冒險旅程～
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+              <div className="articleCategory_SmallR mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_06.jpg"
+                    alt="article_06"
+                  ></img>
                 </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    山林癒：沐浴山林擁抱樹木 ，借助大自然力量自我療癒
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
+                </div>
+              </div>
 
-                <div className="articleCategory_SmallR">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_12.jpeg"
-                      alt="article_12"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      愛好大自然、以童心為原動力，怎麼帶你玩戶外活動？
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_07.jpg"
+                    alt="article_07"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    ～運用先人的智慧結晶， 展開一場現代冒險旅程～
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
+                </div>
+              </div>
+
+              <div className="articleCategory_SmallR mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_12.jpeg"
+                    alt="article_12"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    愛好大自然、以童心為原動力，怎麼帶你玩戶外活動？
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
                 </div>
               </div>
             </div>
 
+            {/* 右邊半部 */}
             <div className="articleCategoryMain1_Large mt-3">
               <div className="articleCategoryLargeImg ml-auto">
                 <img
@@ -614,78 +622,78 @@ function ArticleList(props) {
                 </p>
               </div>
             </div>
-            <div className="articleCategory_Small mt-3">
-              <div className="articleCategory_SmallTop d-flex d-flex justify-content-between">
-                <div className="articleCategory_SmallL">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_04.jpg"
-                      alt="article_04"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      建立「輕量化的觀念」比購 買「輕量化的裝備」重要
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
-                </div>
 
-                <div className="articleCategory_SmallR">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_05.jpg"
-                      alt="article_05"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      靜謐山徑上的星星，找回與 大自然的相處之道！
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+            <div className="articleCategory_Small mt-3 d-flex flex-wrap">
+              {/* 右邊半部 */}
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_04.jpg"
+                    alt="article_04"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    建立「輕量化的觀念」比購 買「輕量化的裝備」重要
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
                 </div>
               </div>
 
-              <div className="articleCategory_SmallBottom d-flex d-flex justify-content-between mt-5">
-                <div className="articleCategory_SmallL">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_08.jpg"
-                      alt="article_08"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      四季的露營，享受美好露營 時光～
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+              <div className="articleCategory_SmallR mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_05.jpg"
+                    alt="article_05"
+                  ></img>
                 </div>
-
-                <div className="articleCategory_SmallR">
-                  <div className="articleCategory_SmallLImg">
-                    <img
-                      src="../images/article/article_33.jpg"
-                      alt="article_33"
-                    ></img>
-                  </div>
-                  <div className="articleCategorySmallText ml-2 mt-3">
-                    <h5 className="articleCategoryTitle">
-                      終極輕量化的山林料理絕招
-                    </h5>
-                    <span className="articleDate">2021.07.15</span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span className="articleAuthor">作者：小編A</span>
-                  </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    靜謐山徑上的星星，找回與 大自然的相處之道！
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
                 </div>
               </div>
+
+              <div className="articleCategory_SmallL mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_08.jpg"
+                    alt="article_08"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    四季的露營，享受美好露營 時光～
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
+                </div>
+              </div>
+
+              <div className="articleCategory_SmallR mx-2 mb-3">
+                <div className="articleCategory_SmallLImg">
+                  <img
+                    src="../images/article/article_33.jpg"
+                    alt="article_33"
+                  ></img>
+                </div>
+                <div className="articleCategorySmallText ml-2 mt-3 mb-3">
+                  <h5 className="articleCategoryTitle">
+                    終極輕量化的山林料理絕招
+                  </h5>
+                  <span className="articleDate">2021.07.15</span>
+                  &nbsp;&nbsp;&nbsp;
+                  <span className="articleAuthor">作者：小編A</span>
+                </div>
+              </div>
+
+              {/* 右邊半部 */}
             </div>
           </div>
         </div>
@@ -714,6 +722,7 @@ function ArticleList(props) {
 
         <div className="row">
           <div className="articleCategoryMain1 d-flex">
+            {/*  */}
             <div className="articleCategory_Small mt-3">
               <div className="articleCategory_SmallTop d-flex d-flex justify-content-between">
                 <div className="articleCategory_SmallL">
@@ -786,6 +795,7 @@ function ArticleList(props) {
               </div>
             </div>
 
+            {/*  */}
             <div className="articleCategoryMain1_Large mt-3">
               <div className="articleCategoryLargeImg ml-auto">
                 <img
