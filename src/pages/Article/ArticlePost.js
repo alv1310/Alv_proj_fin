@@ -118,11 +118,13 @@ function ArticlePost(props) {
 
       <div className="container articlePostMain">
         {/* background color change to fixed */}
+        <div className="a-wrapper"></div>
+        
         <div className="row">
           <div className="articlePostBox mx-auto" id="wrapper">
             <div className="articlePostPic1">
               <img
-                src="../../images/article/article_01.jpg"
+                src={`../../images/article/${post.aImg}`}
                 alt="article_post_picL"
                 className="article_post_picL"
               />
@@ -151,9 +153,7 @@ function ArticlePost(props) {
               </div>
             </div>
 
-            {/* <div id="a_wallpaper"></div> */}
-
-            <div className="articlePostContent">{post.aContent}</div>
+            <p className="articlePostContent">{post.aContent}</p>
 
             <div className="articlePostManualPic">
               <img src="../../images/article/manual.jpg" alt=""></img>
