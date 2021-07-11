@@ -100,7 +100,6 @@ function ArticleList(props) {
   // 取得類別多篇文章
   async function getCategoryFromServer() {
     // 連接的伺服器資料網址
-    // const url = 'http://localhost:4000/articles/cate/2'
     const url = `http://localhost:4000/articles/cate/${aCategoryId}`
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
@@ -334,7 +333,7 @@ function ArticleList(props) {
               ></img>
             </Link>
             <Link className="articlePageTitle ml-2" to="/articles/">
-              風格誌 <BiChevronRight />
+              風格誌
             </Link>
           </div>
           <ul className="nav ml-auto articleCategoryBar mt-3">

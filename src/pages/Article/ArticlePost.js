@@ -17,9 +17,7 @@ function ArticlePost(props) {
   // 取得文章內容
   async function getArticlePostFromServer() {
     // 連接的伺服器資料網址
-    // const url = 'http://localhost:4000/articles/a/12'
     const url = `http://localhost:4000/articles/a/${aId}`
-
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -28,7 +26,6 @@ function ArticlePost(props) {
         'Content-Type': 'appliaction/json',
       }),
     })
-
     const response = await fetch(request)
     const data = await response.json()
     console.log('article data', data)
@@ -40,7 +37,6 @@ function ArticlePost(props) {
   async function getArticleTagFromServer() {
     // 連接的伺服器資料網址
     const url = `http://localhost:4000/articles/a/tag/${aId}`
-
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -49,7 +45,6 @@ function ArticlePost(props) {
         'Content-Type': 'appliaction/json',
       }),
     })
-
     const response = await fetch(request)
     const data = await response.json()
     console.log('tags data', data)
@@ -57,10 +52,10 @@ function ArticlePost(props) {
     setArticleTag(data)
   }
 
+  // 取得標籤篩選結果
   async function getTagFilterFromServer() {
     // 連接的伺服器資料網址
     const url = `http://localhost:4000/articles/tag/${tagId}`
-
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -69,7 +64,6 @@ function ArticlePost(props) {
         'Content-Type': 'appliaction/json',
       }),
     })
-
     const response = await fetch(request)
     const data = await response.json()
     console.log('data tag filters', data)
@@ -82,6 +76,7 @@ function ArticlePost(props) {
     getArticlePostFromServer()
     getArticleTagFromServer()
     getTagFilterFromServer()
+    // getCateNameFromServer()
   }, [])
 
   // ------
@@ -99,13 +94,12 @@ function ArticlePost(props) {
             <Link className="articlePageTitle ml-2" to="/articles/">
               風格誌 <BiChevronRight />
             </Link>
-            <span className="articleBreadCrumb ml-2">露營新手指南</span>
+            <span className="articleBreadCrumb ml-2">{post.aCatName}</span>
           </div>
 
           <div className="articleBackToList ml-auto mt-3">
             <Link
               className="nav-link"
-              // to="/articles/"
               onClick={() => {
                 props.history.goBack()
               }}
@@ -117,9 +111,8 @@ function ArticlePost(props) {
       </div>
 
       <div className="container articlePostMain">
-        {/* background color change to fixed */}
         <div className="a-wrapper"></div>
-        
+
         <div className="row">
           <div className="articlePostBox mx-auto" id="wrapper">
             <div className="articlePostPic1">
@@ -134,7 +127,7 @@ function ArticlePost(props) {
 
             <div className="articlePostPic2">
               <img
-                src="../../images/article/item_20210628093216.jpg"
+                src={`../../images/article/${post.aImg2}`}
                 alt="article_post_picS"
                 className="article_post_picS"
               />
@@ -156,7 +149,7 @@ function ArticlePost(props) {
             <p className="articlePostContent">{post.aContent}</p>
 
             <div className="articlePostManualPic">
-              <img src="../../images/article/manual.jpg" alt=""></img>
+              <img src={`../../images/article/${post.aImg3}`} alt=""></img>
             </div>
           </div>
         </div>

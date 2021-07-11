@@ -1,4 +1,3 @@
-// import { data } from 'jquery'
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link, useParams } from 'react-router-dom'
 import './ArticleList.scss'
@@ -7,16 +6,12 @@ import { BiRightArrowCircle } from 'react-icons/bi'
 import moment from 'moment'
 
 function Category(props) {
-  // const { test } = props
   const { aCategoryId } = useParams()
   const [cate, setCate] = useState([])
-
-  // const searchParams = new URLSearchParams('props.location.search')
-  // const searchParamsId = searchParams.get('id')
+  const [cateName, setCateName] = useState([])
 
   async function getCategoryFromServer() {
     // 連接的伺服器資料網址
-    // const url = 'http://localhost:4000/articles/cate/2'
     const url = `http://localhost:4000/articles/cate/${aCategoryId}`
 
     // 注意header資料格式要設定，伺服器才知道是json格式
@@ -27,18 +22,38 @@ function Category(props) {
         'Content-Type': 'appliaction/json',
       }),
     })
-
     const response = await fetch(request)
     const data = await response.json()
     console.log('cate data', data)
 
     // 設定資料
-    setCate(data)
+    if (data) setCate(data)
+  }
+
+  async function getCateNameFromServer() {
+    // 連接的伺服器資料網址
+    const url = `http://localhost:4000/articles/cate/name/${aCategoryId}`
+
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('cate name data', data)
+
+    // 設定資料
+    if (data) setCateName(data)
   }
 
   // 一開始就會開始載入資料
   useEffect(() => {
     getCategoryFromServer()
+    getCateNameFromServer()
   }, [])
 
   // ------
@@ -46,9 +61,6 @@ function Category(props) {
     <>
       <div className="container">
         <div className="row">
-          {/* {cate.length &&
-            cate.map((value, index) => {
-              return ( */}
           <div className="articleTitleGroup mt-3">
             <Link className="articleLogo" to="/articles/">
               <img
@@ -59,14 +71,12 @@ function Category(props) {
             <Link className="articlePageTitle ml-2" to="/articles/">
               風格誌 <BiChevronRight />
             </Link>
-            <span className="articleBreadCrumb ml-2">露營新手指南</span>
-            {/* {cate[0].aCatName} */}
+            <span className="articleBreadCrumb ml-2">{cateName.aCatName}</span>
           </div>
 
           <div className="articleBackToList ml-auto mt-3">
             <Link
               className="nav-link"
-              // to="/articles/"
               onClick={() => {
                 props.history.goBack()
               }}

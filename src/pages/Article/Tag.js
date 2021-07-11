@@ -9,12 +9,11 @@ import moment from 'moment'
 function Tag(props) {
   const { tagId } = useParams()
   const [tagFilter, setTagFilter] = useState([])
+  const [tagName, setTagName] = useState([])
 
   async function getTagFilterFromServer() {
     // 連接的伺服器資料網址
-    // const url = 'http://localhost:4000/articles/cate/2'
     const url = `http://localhost:4000/articles/tag/${tagId}`
-
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -23,7 +22,6 @@ function Tag(props) {
         'Content-Type': 'appliaction/json',
       }),
     })
-
     const response = await fetch(request)
     const data = await response.json()
     console.log('data', data)
@@ -31,9 +29,28 @@ function Tag(props) {
     setTagFilter(data)
   }
 
+  async function getTagNameFromServer() {
+    // 連接的伺服器資料網址
+    const url = `http://localhost:4000/articles/tag/name/${tagId}`
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('data', data)
+    // 設定資料
+    setTagName(data)
+  }
+
   // 一開始就會開始載入資料
   useEffect(() => {
     getTagFilterFromServer()
+    getTagNameFromServer()
   }, [])
 
   // ------
@@ -51,7 +68,7 @@ function Tag(props) {
             <Link className="articlePageTitle ml-2" to="/articles/">
               風格誌 <BiChevronRight />
             </Link>
-            <span className="articleBreadCrumb ml-2">#櫻花</span>
+            <span className="articleBreadCrumb ml-2">{tagName.tagName}</span>
           </div>
 
           <div className="articleBackToList ml-auto mt-3">
@@ -66,11 +83,11 @@ function Tag(props) {
           </div>
         </div>
 
-        <div className="row d-flex justify-content-between">
+        <div className="row d-flex">
           {tagFilter.length &&
             tagFilter.map((value, index) => {
               return (
-                <div key={value.id} className="articleCategoryFilter mt-3">
+                <div key={value.id} className="articleCategoryFilter mt-3 mx-3">
                   <div className="articleCategoryFilterImg">
                     <img
                       src={`../../images/article/${value.aImg}`}
