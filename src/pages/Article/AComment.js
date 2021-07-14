@@ -24,8 +24,10 @@ function AComment() {
     setFormData(newInput)
   }
 
-  async function sendCommenttoerver() {
+  async function sendCommenttoServer(e) {
+    e.preventDefault()
     const mycomment = { name: formData.name, comment: formData.comment }
+    console.log(mycomment)
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/comment/add'
     // 注意header資料格式要設定，伺服器才知道是json格式
@@ -37,6 +39,8 @@ function AComment() {
         'Content-Type': 'appliaction/json',
       }),
     })
+
+    console.log('abc', JSON.stringify(mycomment))
     const response = await fetch(request)
     const data = await response.json()
     console.log('comment data', data)
@@ -44,18 +48,21 @@ function AComment() {
     // if (data) setFormData(data)
   }
 
-  console.log(sendCommenttoerver())
+  //   console.log(sendCommenttoServer())
 
-  useEffect(() => {
-    sendCommenttoerver()
-  }, [])
+  //   useEffect(() => {
+  //     sendCommenttoServer()
+  //   }, [])
 
   // ------
   return (
     <>
       <form
         class="row articleComment form-group mt-3 ml-3"
-        onSubmit={handleSubmit}
+        onSubmit={(e) => {
+          e.preventDefault()
+        }}
+        method="post"
       >
         <input
           type="text"
@@ -100,9 +107,9 @@ function AComment() {
         <button
           type="submit"
           class="articleCommentSubmit mt-3 ml-auto mr-3"
-          value={handleSubmit}
+          //   value={handleSubmit}
           onClick={(e) => {
-            sendCommenttoerver()
+            sendCommenttoServer(e)
             // const newText = [e.target.value, ...test]
             // setTest(newText)
             // // setComment('')
