@@ -6,8 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../styles/navnfooter.css'
 import NavIcon from './NavIcon.js' //icon SVG路徑檔案
 import { Link } from 'react-router-dom'
+import $ from 'jquery'
 
-//
 const NavBar = (props) => {
   //設定Navbar-icon
   // 可以在各自的link中修改
@@ -17,12 +17,19 @@ const NavBar = (props) => {
     { item: '找活動', link: '/event', icon: 'place' },
     { item: '找靈感', link: '/discover', icon: 'idea' },
   ]
-  //  TODO:
-  //  1.JQ 設定NAV效果
-  //  2.購物車?
-  // href="javascript:void(0)"
-  // eventKey={li.link}
 
+  let lastScroll = 0
+
+  $(window).scroll(function () {
+    const scrollNow = $(this).scrollTop()
+
+    if (lastScroll < scrollNow) {
+      $('.nav-bg').addClass('hide')
+    } else {
+      $('.nav-bg').removeClass('hide')
+    }
+    lastScroll = scrollNow
+  })
   return (
     <>
       <Navbar

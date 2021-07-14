@@ -4,7 +4,7 @@ import { withRouter, Link, useParams } from 'react-router-dom'
 import './ArticleList.scss'
 import moment from 'moment'
 import { BiRightArrowCircle } from 'react-icons/bi'
-import { BiChevronRight } from 'react-icons/bi'
+// import { BiChevronRight } from 'react-icons/bi'
 
 function ArticleList(props) {
   const loadingRef = useRef(true)
@@ -80,7 +80,7 @@ function ArticleList(props) {
   // 取得標籤搜尋所帶多篇文章
   async function getTagFilterFromServer() {
     // 連接的伺服器資料網址
-    const url = `http://localhost:4000/articles/tag/${tagId}`
+    const url = `http://localhost:4000/articles/tags/${tagId}`
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -94,7 +94,7 @@ function ArticleList(props) {
     const data = await response.json()
     console.log('data tag filters', data)
     // 設定資料
-    setTagFilter(data)
+    if (data) setTagFilter(data)
   }
 
   // 取得類別多篇文章
@@ -461,7 +461,7 @@ function ArticleList(props) {
                       setTagFilter(tagFilter)
                       setTagId(value.tagId)
                     }}
-                    to={`/articles/tag/${value.tagId}`}
+                    to={`/articles/tags/${value.tagId}`}
                   >
                     {value.tagName}
                   </Link>

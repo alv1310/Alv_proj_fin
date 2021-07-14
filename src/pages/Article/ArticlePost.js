@@ -6,6 +6,7 @@ import { BiRightArrowCircle } from 'react-icons/bi'
 // import { BsMoon } from 'react-icons/bs'
 import moment from 'moment'
 import ArticleCarousel from '../../components/ArticleCarousel'
+import SliderboxArti from '../../components/SliderboxArti'
 
 function ArticlePost(props) {
   const { aId } = useParams()
@@ -30,7 +31,7 @@ function ArticlePost(props) {
     const data = await response.json()
     console.log('article data', data)
     // 設定資料
-    setPost(data)
+    if (data) setPost(data)
   }
 
   // 取得文章多個標籤
@@ -49,13 +50,13 @@ function ArticlePost(props) {
     const data = await response.json()
     console.log('tags data', data)
     // 設定資料
-    setArticleTag(data)
+    if (data) setArticleTag(data)
   }
 
   // 取得標籤篩選結果
   async function getTagFilterFromServer() {
     // 連接的伺服器資料網址
-    const url = `http://localhost:4000/articles/tag/${tagId}`
+    const url = `http://localhost:4000/articles/tags/${tagId}`
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -70,6 +71,8 @@ function ArticlePost(props) {
     // 設定資料
     setTagFilter(data)
   }
+
+  // add function get product here
 
   // 一開始就會開始載入資料
   useEffect(() => {
@@ -193,7 +196,7 @@ function ArticlePost(props) {
                       setTagFilter(tagFilter)
                       setTagId(value.tagId)
                     }}
-                    to={`/articles/tag/${value.tagId}`}
+                    to={`/articles/tags/${value.tagId}`}
                   >
                     {value.tagName}
                   </Link>
@@ -222,8 +225,10 @@ function ArticlePost(props) {
         <div className="row">
           <div className="articleTagProductGroup mt-3">
             <div className="articleTagProductCarousel mt-5 mx-auto">
-              {/* CAROUSEL STARTS HERE */}
+              {/* ------- CAROUSEL STARTS HERE ------- */}
               <ArticleCarousel />
+
+              <SliderboxArti source="http://localhost:4000/product/tag/1" />
             </div>
           </div>
         </div>
@@ -267,12 +272,10 @@ function ArticlePost(props) {
           />
 
           <div class="media-body ml-3">
-            <h5 class="mt-0 font-weight-bold articleUser">Anna Smith</h5>
-            對新手來說非常適合，值得一試，是近期很棒的熱門露營地點！
+            <h5 class="mt-0 font-weight-bold articleUser">AAA </h5>
+            comment here..
             <div class="media-body mt-3 d-flex flex-column ">
-              <div class="articleReply">
-                感謝您喜愛我們這期的主題企劃，期待與您再次相見！
-              </div>
+              <div class="articleReply">reply here</div>
             </div>
           </div>
         </div>
@@ -284,12 +287,10 @@ function ArticlePost(props) {
             alt="Avatar"
           />
           <div class="media-body ml-3">
-            <h5 class="mt-0 font-weight-bold articleUser">Caroline Horwitz</h5>
-            內容有趣，想看更多相關故事推薦
+            <h5 class="mt-0 font-weight-bold articleUser">BBB</h5>
+            comment here!
             <div class="media-body mt-3 d-flex flex-column ">
-              <div class="articleReply">
-                歡迎加入我們，想看更多故事可點選上方連結前往逛逛！
-              </div>
+              <div class="articleReply">and reply here...</div>
             </div>
           </div>
         </div>

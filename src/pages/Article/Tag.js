@@ -13,7 +13,7 @@ function Tag(props) {
 
   async function getTagFilterFromServer() {
     // 連接的伺服器資料網址
-    const url = `http://localhost:4000/articles/tag/${tagId}`
+    const url = `http://localhost:4000/articles/tags/${tagId}`
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',

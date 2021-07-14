@@ -5,15 +5,18 @@ import { BiChevronRight } from 'react-icons/bi'
 import { BiRightArrowCircle } from 'react-icons/bi'
 import moment from 'moment'
 
+
 function Category(props) {
   const { aCategoryId } = useParams()
   const [cate, setCate] = useState([])
   const [cateName, setCateName] = useState([])
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState('')
 
+  // 取得類別
   async function getCategoryFromServer() {
     // 連接的伺服器資料網址
     const url = `http://localhost:4000/articles/cate/${aCategoryId}`
-
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -25,7 +28,6 @@ function Category(props) {
     const response = await fetch(request)
     const data = await response.json()
     console.log('cate data', data)
-
     // 設定資料
     if (data) setCate(data)
   }
@@ -33,7 +35,6 @@ function Category(props) {
   async function getCateNameFromServer() {
     // 連接的伺服器資料網址
     const url = `http://localhost:4000/articles/cate/name/${aCategoryId}`
-
     // 注意header資料格式要設定，伺服器才知道是json格式
     const request = new Request(url, {
       method: 'GET',
@@ -45,7 +46,25 @@ function Category(props) {
     const response = await fetch(request)
     const data = await response.json()
     console.log('cate name data', data)
+    // 設定資料
+    if (data) setCateName(data)
+  }
 
+  // 取得全部
+  async function getAllPostFromServer() {
+    // 連接的伺服器資料網址
+    const url = 'http://localhost:4000/articles/allpost'
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'appliaction/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('all post data', data)
     // 設定資料
     if (data) setCateName(data)
   }
@@ -54,6 +73,7 @@ function Category(props) {
   useEffect(() => {
     getCategoryFromServer()
     getCateNameFromServer()
+    getAllPostFromServer()
   }, [])
 
   // ------
@@ -118,6 +138,13 @@ function Category(props) {
               )
             })}
         </div>
+        {/* <div className="row">
+            <ArticlePagination
+            totalPages={totalPages}
+            page={page}
+            setPage={setPage}
+            />
+        </div> */}
       </div>
     </>
   )
