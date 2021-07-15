@@ -15,7 +15,7 @@ function Sliderbox(props) {
   async function getData() {
     //設定卡片資料源頭
     const source = props.source
-
+    console.log(source)
     const request = new Request(source, {
       method: 'GET',
       headers: new Headers({
@@ -89,7 +89,7 @@ function Sliderbox(props) {
                     <Link to={prourl} style={{ textDecoration: 'none' }}>
                       <div className="pro-cardimgarea">
                         <img
-                          src={value.product_oimage}
+                          src={value.product_img}
                           className="pro-cardimg"
                           alt={value.product_name}
                         ></img>
@@ -100,10 +100,12 @@ function Sliderbox(props) {
                         <h5>{value.product_name}</h5>
                       </div>
                       <div class="pro-cardsummary">
-                        <span>{value.product_summary}</span>
+                        <span className="a-card-sum">
+                          {value.product_summary}
+                        </span>
                       </div>
                       <div class="pro-cardrank">
-                        <div>Rating　</div>
+                        <div className="a-card-rating mr-3">Rating　</div>
                         <div>
                           <ReactStars
                             count={5}

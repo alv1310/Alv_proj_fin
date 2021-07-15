@@ -44,17 +44,17 @@ function App() {
                 <Footer ver="full" />
               </Route>
 
+              {/* 測試 */}
               <Route exact path="/articles/comment">
                 <AComment />
                 <Footer ver="full" />
               </Route>
 
+              {/* 測試 */}
               <Route exact path="/articles/commentline">
                 <ACommentLine />
                 <Footer ver="full" />
               </Route>
-
-
             </Switch>
           </ScrollToTop>
         </>

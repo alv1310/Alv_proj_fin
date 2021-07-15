@@ -7,6 +7,8 @@ import { BiRightArrowCircle } from 'react-icons/bi'
 import moment from 'moment'
 import ArticleCarousel from '../../components/ArticleCarousel'
 import SliderboxArti from '../../components/SliderboxArti'
+import ACommentLine from '../../components/ACommentLine'
+import AComment from '../../components/AComment'
 
 function ArticlePost(props) {
   const { aId } = useParams()
@@ -226,15 +228,17 @@ function ArticlePost(props) {
           <div className="articleTagProductGroup mt-3">
             <div className="articleTagProductCarousel mt-5 mx-auto">
               {/* ------- CAROUSEL STARTS HERE ------- */}
-              <ArticleCarousel />
+              {/* <ArticleCarousel /> */}
 
-              <SliderboxArti source="http://localhost:4000/product/tag/1" />
+              <SliderboxArti
+                source={`http://localhost:4000/product/aid/${aId}`}
+              />
             </div>
           </div>
         </div>
       </div>
 
-      {/* ------------ 留言板 -------------- */}
+      {/* --------------- 留言板 -------------- */}
       <div className="container">
         <div className="row">
           <div className="articleTitleGroup mt-5">
@@ -246,25 +250,18 @@ function ArticlePost(props) {
             </span>
             <span className="articlePageTitle ml-2 mr-3">會員留言</span>
           </div>
-          <div className="articleComment"></div>
+          {/* <div className="articleComment"></div> */}
         </div>
 
         {/* ------ 輸入留言 ----- */}
 
         <div class="row articleComment form-group mt-3 ml-3">
-          <textarea
-            class="form-control"
-            rows="3"
-            placeholder="我的留言..."
-          ></textarea>
-          <button type="button" class="articleCommentSubmit mt-3 ml-auto mr-3">
-            送出留言
-          </button>
+          <AComment />
         </div>
 
         {/* ------ 留言紀錄 ------ */}
-
-        <div class="media articleCommentGroup mt-5">
+        <ACommentLine />
+        {/* <div class="media articleCommentGroup mt-5">
           <img
             class="d-flex rounded-circle avatar z-depth-1-half mr-3"
             src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
@@ -279,22 +276,7 @@ function ArticlePost(props) {
             </div>
           </div>
         </div>
-        {/* ------ */}
-        <div class="media articleCommentGroup mt-5">
-          <img
-            class="d-flex rounded-circle avatar z-depth-1-half mr-3"
-            src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg"
-            alt="Avatar"
-          />
-          <div class="media-body ml-3">
-            <h5 class="mt-0 font-weight-bold articleUser">BBB</h5>
-            comment here!
-            <div class="media-body mt-3 d-flex flex-column ">
-              <div class="articleReply">and reply here...</div>
-            </div>
-          </div>
-        </div>
-
+         */}
         {/*  */}
       </div>
     </>

@@ -49,31 +49,12 @@ function Category(props) {
     // 設定資料
     if (data) setCateName(data)
   }
-
-  // 取得全部
-  async function getAllPostFromServer() {
-    // 連接的伺服器資料網址
-    const url = 'http://localhost:4000/articles/allpost'
-    // 注意header資料格式要設定，伺服器才知道是json格式
-    const request = new Request(url, {
-      method: 'GET',
-      headers: new Headers({
-        Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
-      }),
-    })
-    const response = await fetch(request)
-    const data = await response.json()
-    console.log('all post data', data)
-    // 設定資料
-    if (data) setCateName(data)
-  }
-
+  
   // 一開始就會開始載入資料
   useEffect(() => {
     getCategoryFromServer()
     getCateNameFromServer()
-    getAllPostFromServer()
+    // getAllPostFromServer()
   }, [])
 
   // ------
