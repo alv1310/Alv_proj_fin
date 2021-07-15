@@ -2,20 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { withRouter, Link, useParams } from 'react-router-dom'
 
 function AComment() {
-  //   const [comment, setComment] = useState('')
-  const [test, setTest] = useState(['abc', 'def'])
-  //   const [name, setName] = useState('')
-  const [test2, setTest2] = useState(['111', '222'])
-
   const [formData, setFormData] = useState({
     name: '',
     comment: '',
   })
 
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  //   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = (e) => {
-    setIsSubmitted(true)
+    // setIsSubmitted(true)
     e.preventDefault()
   }
 
@@ -26,8 +21,8 @@ function AComment() {
 
   async function sendCommenttoServer(e) {
     e.preventDefault()
-    const mycomment = { name: formData.name, comment: formData.comment }
-    console.log(mycomment)
+    const mycomment = { name: 'a', comment: 'f' }
+    console.log('mycomment', mycomment)
     // 連接的伺服器資料網址
     const url = 'http://localhost:4000/articles/comment/add'
     // 注意header資料格式要設定，伺服器才知道是json格式
@@ -59,9 +54,10 @@ function AComment() {
     <>
       <form
         class="row articleComment form-group mt-3 ml-3"
-        onSubmit={(e) => {
-          e.preventDefault()
-        }}
+        // onSubmit={(e) => {
+        //   e.preventDefault()
+        // }}
+        onSubmit={sendCommenttoServer}
         method="post"
       >
         <input
@@ -71,7 +67,7 @@ function AComment() {
           placeholder="我的名字..."
           onChange={handleChange}
         />
-        {console.log(formData.name)}
+        {/* {console.log(formData.name)} */}
         <textarea
           type="textarea"
           name="comment"
@@ -82,64 +78,17 @@ function AComment() {
           onChange={handleChange}
         ></textarea>
 
-        {/* <input
-          type="text"
-          name="name"
-          value={name}
-          placeholder="我的名字..."
-          onChange={(e) => {
-            setName(e.target.value)
-          }}
-        />
-
-        <textarea
-          type="textarea"
-          name="comment"
-          value={comment}
-          class="form-control"
-          rows="3"
-          placeholder="我的留言..."
-          onChange={(e) => {
-            setComment(e.target.value)
-          }}
-        ></textarea> */}
-
         <button
           type="submit"
           class="articleCommentSubmit mt-3 ml-auto mr-3"
           //   value={handleSubmit}
-          onClick={(e) => {
-            sendCommenttoServer(e)
-            // const newText = [e.target.value, ...test]
-            // setTest(newText)
-            // // setComment('')
-            // const newName = [e.target.value, ...test2]
-            // setTest2(newName)
-            // // setName('')
-            // console.log('newText btn', newText)
-          }}
-          //   onClick={handleSubmit}
+          //   onClick={(e) => {
+          //     sendCommenttoServer(e)
+          //   }}
         >
           送出留言
         </button>
       </form>
-
-      {/* -------- */}
-
-      <div className="show_here">
-        <ul>
-          {test.map((v, i) => {
-            return <li key={i}> {v} </li>
-          })}
-        </ul>
-      </div>
-      <div className="show_here2">
-        <ul>
-          {test2.map((v, i) => {
-            return <li key={i}> {v} </li>
-          })}
-        </ul>
-      </div>
     </>
   )
 }
