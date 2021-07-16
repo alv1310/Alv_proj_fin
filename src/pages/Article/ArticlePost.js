@@ -80,7 +80,7 @@ function ArticlePost(props) {
   useEffect(() => {
     getArticlePostFromServer()
     getArticleTagFromServer()
-    getTagFilterFromServer()
+    // getTagFilterFromServer()
     // getCateNameFromServer()
   }, [])
 
@@ -161,7 +161,7 @@ function ArticlePost(props) {
       </div>
 
       {/* ------------ 影片部分 -------------- */}
-      <div className="container">
+      {/* <div className="container">
         <div className="row">
           <div className="articlePostManualVid">
             <video width="960" height="600" controls muted autoplay>
@@ -172,7 +172,7 @@ function ArticlePost(props) {
             </video>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* ------------ 標籤部分 -------------- */}
 

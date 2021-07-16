@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link, useParams } from 'react-router-dom'
 
-function AComment() {
+function AComment(props) {
   const [formData, setFormData] = useState({
     name: '',
     comment: '',
@@ -32,6 +32,10 @@ function AComment() {
     const response = await fetch(request)
     const data = await response.json()
     console.log('comment data', data)
+    setFormData({ ...formData, name: '', comment: '' })
+    setTimeout(() => {
+      getCommentFromServer()
+    }, 1000)
   }
 
   // ------

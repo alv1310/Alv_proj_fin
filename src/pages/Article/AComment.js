@@ -32,6 +32,7 @@ function AComment() {
     const response = await fetch(request)
     const data = await response.json()
     console.log('comment data', data)
+    setFormData({ ...formData, name: '', comment: '' })
   }
 
   // ------

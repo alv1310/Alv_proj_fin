@@ -7,8 +7,8 @@ import Category from './pages/Article/Category'
 import Tag from './pages/Article/Tag'
 import ArticlePost from './pages/Article/ArticlePost'
 import ScrollToTop from './components/ScrollToTop'
-import AComment from './pages/Article/AComment'
-import ACommentLine from './pages/Article/ACommentLine'
+// import AComment from './pages/Article/AComment'
+// import ACommentLine from './pages/Article/ACommentLine'
 
 function App() {
   // const [test, setTest] = useState()
@@ -45,16 +45,18 @@ function App() {
               </Route>
 
               {/* 測試 */}
-              <Route exact path="/articles/comment">
+              {/* <Route exact path="/articles/comment">
                 <AComment />
                 <Footer ver="full" />
-              </Route>
+              </Route> */}
 
               {/* 測試 */}
-              <Route exact path="/articles/commentline">
+              {/* <Route exact path="/articles/commentline">
                 <ACommentLine />
                 <Footer ver="full" />
-              </Route>
+              </Route> */}
+
+
             </Switch>
           </ScrollToTop>
         </>
