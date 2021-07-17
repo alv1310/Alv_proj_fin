@@ -5,7 +5,7 @@ import { BiChevronRight } from 'react-icons/bi'
 import { BiRightArrowCircle } from 'react-icons/bi'
 // import { BsMoon } from 'react-icons/bs'
 import moment from 'moment'
-import ArticleCarousel from '../../components/ArticleCarousel'
+// import ArticleCarousel from '../../components/ArticleCarousel'
 import SliderboxArti from '../../components/SliderboxArti'
 import ACommentLine from '../../components/ACommentLine'
 import AComment from '../../components/AComment'
@@ -16,6 +16,7 @@ function ArticlePost(props) {
   const [articleTag, setArticleTag] = useState([])
   const [tagFilter, setTagFilter] = useState([])
   const [tagId, setTagId] = useState([])
+  const [comment, setComment] = useState([])
 
   // 取得文章內容
   async function getArticlePostFromServer() {
@@ -45,7 +46,7 @@ function ArticlePost(props) {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
+        'Content-Type': 'application/json',
       }),
     })
     const response = await fetch(request)
@@ -64,7 +65,7 @@ function ArticlePost(props) {
       method: 'GET',
       headers: new Headers({
         Accept: 'application/json',
-        'Content-Type': 'appliaction/json',
+        'Content-Type': 'application/json',
       }),
     })
     const response = await fetch(request)
@@ -74,7 +75,24 @@ function ArticlePost(props) {
     setTagFilter(data)
   }
 
-  // add function get product here
+  // 取得留言
+  async function getCommentFromServer() {
+    // 連接的伺服器資料網址
+    const url = `http://localhost:4000/articles/comment`
+    // 注意header資料格式要設定，伺服器才知道是json格式
+    const request = new Request(url, {
+      method: 'GET',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+    })
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log('comment data', data)
+    // 設定資料
+    if (data) setComment(data)
+  }
 
   // 一開始就會開始載入資料
   useEffect(() => {
@@ -250,33 +268,27 @@ function ArticlePost(props) {
             </span>
             <span className="articlePageTitle ml-2 mr-3">會員留言</span>
           </div>
-          {/* <div className="articleComment"></div> */}
         </div>
 
         {/* ------ 輸入留言 ----- */}
 
-        <div class="row articleComment form-group mt-3 ml-3">
-          <AComment />
+        <div className="row articleComment form-group mt-3 flex-column">
+          {sessionStorage.getItem('mId') === '1' ? (
+            <AComment getCommentFromServer={getCommentFromServer} />
+          ) : (
+            <Link to="/Login" className="mt-1 mb-3 articleLogin">
+              歡迎登入會員留言
+            </Link>
+          )}
         </div>
 
         {/* ------ 留言紀錄 ------ */}
-        <ACommentLine />
-        {/* <div class="media articleCommentGroup mt-5">
-          <img
-            class="d-flex rounded-circle avatar z-depth-1-half mr-3"
-            src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-            alt="Avatar"
-          />
+        <ACommentLine
+          comment={comment}
+          setComment={setComment}
+          getCommentFromServer={getCommentFromServer}
+        />
 
-          <div class="media-body ml-3">
-            <h5 class="mt-0 font-weight-bold articleUser">AAA </h5>
-            comment here..
-            <div class="media-body mt-3 d-flex flex-column ">
-              <div class="articleReply">reply here</div>
-            </div>
-          </div>
-        </div>
-         */}
         {/*  */}
       </div>
     </>

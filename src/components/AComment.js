@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link, useParams } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function AComment(props) {
+  const { getCommentFromServer } = props
   const [formData, setFormData] = useState({
     name: '',
     comment: '',
@@ -31,7 +33,32 @@ function AComment(props) {
     console.log('my comment', JSON.stringify(mycomment))
     const response = await fetch(request)
     const data = await response.json()
+
     console.log('comment data', data)
+    if (!data.comment) {
+      errorAlert()
+    } else {
+      successAlert()
+    }
+
+    function successAlert() {
+      Swal.fire({
+        icon: 'success',
+        title: '留言成功',
+        // text: '下次請您使用新密碼登入',
+        confirmButtonColor: '#ffbb00',
+      })
+    }
+
+    function errorAlert(errorMessages) {
+      Swal.fire({
+        icon: 'question',
+        title: '沒有輸入留言？',
+        text: '沒有留言內容，請重新輸入',
+        confirmButtonColor: '#ffbb00',
+      })
+    }
+
     setFormData({ ...formData, name: '', comment: '' })
     setTimeout(() => {
       getCommentFromServer()
@@ -42,13 +69,14 @@ function AComment(props) {
   return (
     <>
       <form
-        class="row articleComment form-group mt-3 ml-3"
+        className="row articleComment form-group mx-3"
         onSubmit={sendCommenttoServer}
         method="post"
       >
         <input
           type="text"
           name="name"
+          className="form-control articleName my-3"
           value={formData.name}
           placeholder="我的名字..."
           onChange={handleChange}
@@ -58,13 +86,16 @@ function AComment(props) {
           type="textarea"
           name="comment"
           value={formData.comment}
-          class="form-control"
+          className="form-control articleTextarea"
           rows="3"
           placeholder="我的留言..."
           onChange={handleChange}
         ></textarea>
 
-        <button type="submit" class="articleCommentSubmit mt-3 ml-auto mr-3">
+        <button
+          type="submit"
+          className="articleCommentSubmit my-3 ml-auto mr-3"
+        >
           送出留言
         </button>
       </form>
